@@ -2,9 +2,10 @@
 <resources>
     <string name="app_name">Calculator</string>
     <string name="hello_world">Hello world!</string>
-    <string name="sin">sin</string>
-    <string name="cos">cos</string>
-    <string name="tan">tan</string>
+    <string name="action_settings">Calculator</string>
+    <string name="sin">SIN</string>
+    <string name="cos">COS</string>
+    <string name="tan">TAN</string>
     <string name="percent">%</string>
     <string name="add">+</string>
     <string name="subtract">-</string>
@@ -21,12 +22,12 @@
     <string name="seven">7</string>
     <string name="eight">8</string>
     <string name="nine">9</string>
-    <string name="power">^</string>
-    <string name="backspace">ce</string>
-    <string name="clearall">ac</string>
+    <string name="power">x^2</string>
+    <string name="backspace">CE</string>
+    <string name="clearall">AC</string>
     <string name="factorial">x!</string>
-    <string name="log">log</string>
-    <string name="naturallog">ln</string>
+    <string name="log">LOG</string>
+    <string name="naturallog">LN</string>
     <string name="answer">ANS</string>
     <string name="pi">π</string>
     <string name="sqrt">√</string>

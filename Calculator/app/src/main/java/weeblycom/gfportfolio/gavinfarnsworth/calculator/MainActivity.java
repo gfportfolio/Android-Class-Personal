@@ -2,16 +2,42 @@ package weeblycom.gfportfolio.gavinfarnsworth.calculator;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
+    public TextView mainTextView;
+    public TextView historyTextView;
+    public Button clearButton;
+    public String mainText;
+    public String historyText;
+    public List<String> mainTextStrings;
+    public List<String> historyList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainTextView = (TextView) findViewById(R.id.maintextview);
+        historyTextView = (TextView) findViewById(R.id.historytextview);
+        clearButton = (Button) findViewById(R.id.btnclear);
+        mainText = "";
+        historyText = "";
+        mainTextStrings= Collections.emptyList();
+        historyList = Collections.emptyList();
+        mainTextView.setText(mainText);
+        historyTextView.setText(historyText);
+
     }
 
 
@@ -35,5 +61,63 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void clickFunctionButton(View v){
+        Button clickedButton = (Button)v;
+        String buttonText = clickedButton.getText().toString().toLowerCase();
+        if(buttonText.contains("x")){
+            buttonText.replace("x","");
+        }
+        mainText+=" "+buttonText+" ";
+        mainTextView.setText(mainText);
+        clearButton.setText(R.string.backspace);
+
+
+    }
+    public void clickNumberButton(View v){
+        Button clickedButton = (Button)v;
+        mainText+=clickedButton.getText();
+        mainTextView.setText(mainText);
+        clearButton.setText(R.string.backspace);
+    }
+
+    public void clickSpecialButton(View v){
+        Button clickedButton = (Button)v;
+        switch(clickedButton.getText().toString()){
+            case"CE":clickedCE(clickedButton);
+                break;
+            case"AC":clickedAC(clickedButton);
+                break;
+            case"=":clickedEqual(clickedButton);
+                break;
+            case".":clickedPeriod(clickedButton);
+                break;
+            case"ANS":clickedANS(clickedButton);
+                break;
+
+
+        }
+
+
+        mainTextView.setText(mainText);
+
+    }
+    private void clickedCE(Button clickedButton){
+        mainText="";
+        clearButton.setText(R.string.clearall);
+    }
+    private void clickedAC(Button clickedButton){
+        mainText="";
+    }
+    private void clickedPeriod(Button clickedButton){
+        if(!mainText.contains(".")){
+            mainText+=clickedButton.getText();
+        }
+    }
+    private void clickedEqual(Button clickedButton){
+        //mainText="";
+    }
+    private void clickedANS(Button clickedButton){
+        //mainText="";
     }
 }

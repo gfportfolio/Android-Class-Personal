@@ -3,7 +3,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="@color/lightbackround">
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,11 +18,13 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="88dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/maintextview"
-            android:gravity="right" />
+            android:gravity="center_vertical|right"
+            android:textSize="30dp"
+            android:maxLines="2" />
 
         <TableLayout
             android:layout_width="fill_parent"
@@ -34,38 +37,51 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:text="@string/sin"
                     android:id="@+id/btnsin"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:clickable="true"
+                    android:onClick="clickFunctionButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:text="@string/factorial"
                     android:id="@+id/btnfactorial"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickFunctionButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:id="@+id/btnanswer"
                     android:layout_column="2"
                     android:text="@string/answer"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickSpecialButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:text="@string/clearall"
                     android:id="@+id/btnclear"
                     android:layout_column="3"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickSpecialButton" />
             </TableRow>
 
             <TableRow
@@ -75,38 +91,50 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:text="@string/cos"
                     android:id="@+id/btncos"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickFunctionButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:text="@string/naturallog"
                     android:id="@+id/btnnatlog"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickFunctionButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:id="@+id/btnlog"
                     android:layout_column="2"
                     android:text="@string/log"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickFunctionButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:text="@string/percent"
                     android:id="@+id/btnpercent"
                     android:layout_column="3"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickFunctionButton" />
             </TableRow>
 
             <TableRow
@@ -116,38 +144,50 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:text="@string/tan"
                     android:id="@+id/btntan"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickFunctionButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:text="@string/pi"
                     android:id="@+id/btnpi"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickFunctionButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:id="@+id/btnsqrt"
                     android:layout_column="2"
                     android:text="@string/sqrt"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickFunctionButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/buttonfontsize"
                     android:text="@string/power"
                     android:id="@+id/btnpower"
                     android:layout_column="3"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickFunctionButton" />
             </TableRow>
 
             <TableRow
@@ -157,38 +197,51 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/seven"
                     android:id="@+id/btnseven"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/eight"
                     android:id="@+id/btneight"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:id="@+id/btnnine"
                     android:layout_column="2"
                     android:text="@string/nine"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/divide"
                     android:id="@+id/btndivide"
                     android:layout_column="3"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/mainfunctionbutton"
+                    android:clickable="true"
+                    android:onClick="clickFunctionButton" />
             </TableRow>
 
             <TableRow
@@ -198,38 +251,50 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/four"
                     android:id="@+id/btnfour"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/five"
                     android:id="@+id/btnfive"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:id="@+id/btnsix"
                     android:layout_column="2"
                     android:text="@string/six"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/multiply"
                     android:id="@+id/btnmultiply"
                     android:layout_column="3"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/mainfunctionbutton"
+                    android:onClick="clickFunctionButton" />
             </TableRow>
 
             <TableRow
@@ -239,38 +304,50 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/one"
                     android:id="@+id/btnone"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/two"
                     android:id="@+id/btntwo"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:id="@+id/btnthree"
                     android:layout_column="2"
                     android:text="@string/three"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/subtract"
                     android:id="@+id/btnsubtract"
                     android:layout_column="3"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/mainfunctionbutton"
+                    android:onClick="clickFunctionButton" />
             </TableRow>
 
             <TableRow
@@ -280,38 +357,50 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/period"
                     android:id="@+id/btnperiod"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/functionbutton"
+                    android:onClick="clickSpecialButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/zero"
                     android:id="@+id/btnzero"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/numberbutton"
+                    android:onClick="clickNumberButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:id="@+id/btnequal"
                     android:layout_column="2"
                     android:text="@string/equal"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/action"
+                    android:onClick="clickSpecialButton" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/specialbuttonsfontsize"
                     android:text="@string/add"
                     android:id="@+id/btnadd"
                     android:layout_column="3"
                     android:layout_weight="1"
-                    android:height="@dimen/buttonheight" />
+                    android:height="@dimen/buttonheight"
+                    android:background="@color/mainfunctionbutton"
+                    android:onClick="clickFunctionButton" />
             </TableRow>
         </TableLayout>
     </LinearLayout>
