@@ -1,7 +1,8 @@
-package weeblycom.gfportfolio.gavinfarnsworth.calculator;
+package weeblycom.gfportfolio.gavinfarnsworth.calculatorassignment;
 
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
-
+import mathexpressioncalculator.Calculator;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -21,9 +22,6 @@ public class MainActivity extends ActionBarActivity {
     public String historyText;
     public List<String> mainTextStrings;
     public List<String> historyList;
-    public String[] orderOfOps;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +35,6 @@ public class MainActivity extends ActionBarActivity {
         historyList = Collections.emptyList();
         mainTextView.setText(mainText);
         historyTextView.setText(historyText);
-
     }
 
 
@@ -47,26 +44,11 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
     public void clickFunctionButton(View v){
         Button clickedButton = (Button)v;
         String buttonText = clickedButton.getText().toString().toLowerCase();
         if(buttonText.contains("x")){
-           buttonText = buttonText.replace("x","");
+            buttonText = buttonText.replace("x","");
         }
         mainText+=" "+buttonText+" ";
         mainTextView.setText(mainText);
@@ -82,8 +64,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void clickSpecialButton(View v){
-        mainText = "";
-        mainTextView.setText(mainText);
+
         Button clickedButton = (Button)v;
         switch(clickedButton.getText().toString()){
             case"CE":clickedCE(clickedButton);
@@ -94,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
                 break;
             case".":clickedPeriod(clickedButton);
                 break;
-               }
+        }
 
 
         mainTextView.setText(mainText);
@@ -113,12 +94,26 @@ public class MainActivity extends ActionBarActivity {
         }
     }
     private void clickedEqual(Button clickedButton){
-
-        //Calculator calculator = new Calculator();
-        //calculator.setExpression(mainText);
-        //double result = calculator.getResult();
-        mainText = "";
+        mainTextView.setText(mainText);
+        Log.d("main text",mainText);
+        Calculator calculator = new Calculator();
+        calculator.setExpression(mainText);
+        double result = calculator.getResult();
+        mainText = result+"";
         mainTextView.setText(mainText);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
