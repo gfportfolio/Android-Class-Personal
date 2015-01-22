@@ -22,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
     public String historyText;
     public List<String> mainTextStrings;
     public List<String> historyList;
+    public String[] orderOfOps;
 
 
     @Override
@@ -37,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
         historyList = Collections.emptyList();
         mainTextView.setText(mainText);
         historyTextView.setText(historyText);
+        orderOfOps = {R.string.pi, R.string.sin, R.string.cos, R.string.tan, R.string.naturallog, R.string.log, R.string.factorial, R.string.percent, R.string.sqrt, R.string.power, R.string.divide, R.string.multiply, R.string.add, R.string.subtract};
 
     }
 
@@ -66,7 +68,7 @@ public class MainActivity extends ActionBarActivity {
         Button clickedButton = (Button)v;
         String buttonText = clickedButton.getText().toString().toLowerCase();
         if(buttonText.contains("x")){
-            buttonText.replace("x","");
+           buttonText = buttonText.replace("x","");
         }
         mainText+=" "+buttonText+" ";
         mainTextView.setText(mainText);
@@ -92,11 +94,7 @@ public class MainActivity extends ActionBarActivity {
                 break;
             case".":clickedPeriod(clickedButton);
                 break;
-            case"ANS":clickedANS(clickedButton);
-                break;
-
-
-        }
+               }
 
 
         mainTextView.setText(mainText);
@@ -117,7 +115,5 @@ public class MainActivity extends ActionBarActivity {
     private void clickedEqual(Button clickedButton){
         //mainText="";
     }
-    private void clickedANS(Button clickedButton){
-        //mainText="";
-    }
+
 }

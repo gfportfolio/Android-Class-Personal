@@ -18,7 +18,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="88dp"
+            android:layout_height="65dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/maintextview"
@@ -28,7 +28,7 @@
 
         <TableLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="463dp">
 
             <TableRow
                 android:layout_width="fill_parent"
@@ -69,7 +69,7 @@
                     android:layout_weight="1"
                     android:height="@dimen/buttonheight"
                     android:background="@color/functionbutton"
-                    android:onClick="clickSpecialButton" />
+                    android:onClick="clickFunctionButton" />
 
                 <Button
                     android:layout_width="wrap_content"
