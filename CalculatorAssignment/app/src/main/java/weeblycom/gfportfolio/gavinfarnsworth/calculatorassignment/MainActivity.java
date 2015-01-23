@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,7 +23,8 @@ public class MainActivity extends ActionBarActivity {
     public String mainText;
     public String historyText;
     public List<String> mainTextStrings;
-    public List<String> historyList;
+    public ArrayList<String> historyList;
+    private CalculatorModel calc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +32,10 @@ public class MainActivity extends ActionBarActivity {
         mainTextView = (TextView) findViewById(R.id.maintextview);
         historyTextView = (TextView) findViewById(R.id.historytextview);
         clearButton = (Button) findViewById(R.id.btnclear);
-        mainText = "";
-        historyText = "";
-        mainTextStrings= Collections.emptyList();
-        historyList = Collections.emptyList();
+
         mainTextView.setText(mainText);
         historyTextView.setText(historyText);
+        calc = new CalculatorModel();
     }
 
 
@@ -46,62 +47,45 @@ public class MainActivity extends ActionBarActivity {
     }
     public void clickFunctionButton(View v){
         Button clickedButton = (Button)v;
-        String buttonText = clickedButton.getText().toString().toLowerCase();
-        if(buttonText.contains("x")){
-            buttonText = buttonText.replace("x","");
-        }
-        mainText+=" "+buttonText+" ";
-        mainTextView.setText(mainText);
+        mainTextView.setText(calc.functionButton(clickedButton.getText().toString()));
         clearButton.setText(R.string.backspace);
 
 
     }
     public void clickNumberButton(View v){
         Button clickedButton = (Button)v;
-        mainText+=clickedButton.getText();
-        mainTextView.setText(mainText);
+        mainTextView.setText(calc.numberButton(clickedButton.getText().toString()));
         clearButton.setText(R.string.backspace);
     }
 
     public void clickSpecialButton(View v){
-
+        String newText = "";
         Button clickedButton = (Button)v;
         switch(clickedButton.getText().toString()){
-            case"CE":clickedCE(clickedButton);
+            case"CE":newText=calc.clickedCE(clickedButton);
                 break;
-            case"AC":clickedAC(clickedButton);
+            case"AC":newText = calc.clickedAC(clickedButton);
                 break;
-            case"=":clickedEqual(clickedButton);
+            case"=":newText = clickedEqual(clickedButton);
                 break;
-            case".":clickedPeriod(clickedButton);
+            case".":newText = calc.clickedPeriod(clickedButton);
                 break;
         }
 
 
-        mainTextView.setText(mainText);
+        mainTextView.setText(newText);
 
     }
-    private void clickedCE(Button clickedButton){
-        mainText="";
-        clearButton.setText(R.string.clearall);
+
+    private String clickedEqual(Button clickedButton) {
+        String r = calc.clickedEqual(clickedButton);
+        historyTextView.setText(calc.historyText);
+        return r;
     }
-    private void clickedAC(Button clickedButton){
-        mainText="";
-    }
-    private void clickedPeriod(Button clickedButton){
-        if(!mainText.contains(".")){
-            mainText+=clickedButton.getText();
-        }
-    }
-    private void clickedEqual(Button clickedButton){
-        mainTextView.setText(mainText);
-        Log.d("main text",mainText);
-        Calculator calculator = new Calculator();
-        calculator.setExpression(mainText);
-        double result = calculator.getResult();
-        mainText = result+"";
-        mainTextView.setText(mainText);
-    }
+
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
