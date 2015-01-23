@@ -29,15 +29,15 @@ public CalculatorModel(){
 }
 
     public String numberButton(String buttonText){
-
-        return "";
+        mainText+=buttonText;
+        return mainText;
     }
     public String functionButton(String buttonText){
         if(buttonText.contains("x")){
             buttonText = buttonText.replace("x","");
         }
         mainText+=" "+buttonText+" ";
-        return "";
+        return mainText;
     }
     public String clickedCE(Button clickedButton){
         mainText="";
@@ -57,20 +57,22 @@ public CalculatorModel(){
 
         Calculator calculator = new Calculator();
         String equationString = equationStringChanger(mainText);
+        equationString.replace("ANS", historyText);
         calculator.setExpression(equationString);
         if(!historyText.equals("")){
             historyList.add(historyText);
         }
         historyText = mainText;
         try{
-            double result = calculator.getResult();
+            //double result = calculator.getResult();
+            Evaluator evaluator = new Evaluator(mainText);
+            String result = evaluator.evaluate();
             mainText = result+"";
         }
         catch(Exception e){
             mainText = "ERROR";
         }
-        mainTextView.setText(mainText);
-        historyTextView.setText(historyText);
+
 
         return mainText;
     }
