@@ -20,52 +20,102 @@ public class CalculatorModel {
     public String historyText;
     public ArrayList<String> mainTextStrings;
     public ArrayList<String> historyList;
+    boolean lastButtonEquals;
+    public ArrayList<String> answerFunctions;
+
 
 public CalculatorModel(){
     mainText = "";
     historyText = "";
     mainTextStrings= new ArrayList<String>();
     historyList = new ArrayList<String>();
+    lastButtonEquals = false;
+    answerFunctions = new ArrayList<String>();
+    answerFunctions.add("%");
+    answerFunctions.add("÷");
+    answerFunctions.add("×");
+    answerFunctions.add("^2");
+    answerFunctions.add("+");
+    answerFunctions.add("-");
+    answerFunctions.add("!");
 }
 
     public String numberButton(String buttonText){
-        mainText+=buttonText;
+        if(lastButtonEquals) {
+            historyText = mainText;
+            mainText=buttonText;
+            lastButtonEquals = false;
+
+        }
+        else{
+            mainText+=buttonText;
+        }
         return mainText;
     }
     public String functionButton(String buttonText){
         if(buttonText.contains("x")){
             buttonText = buttonText.replace("x","");
         }
-        mainText+=" "+buttonText+" ";
+        if(lastButtonEquals) {
+            historyText = mainText;
+            String beginingspace=" ";
+            if(answerFunctions.contains(buttonText)&&!historyText.equals("ERROR")){
+                beginingspace="ANS ";
+            }
+            mainText = beginingspace + buttonText + " ";
+            lastButtonEquals = false;
+        }
+        else{
+            mainText += " " + buttonText + " ";
+        }
         return mainText;
     }
     public String clickedCE(Button clickedButton){
-        mainText="";
+        if(mainText.length()>1) {
+            mainText = mainText.substring(0, mainText.length() - 1);
+        }
+        else if(mainText.length()==1){
+            mainText = " ";
+        }
         return mainText;
     }
     public String clickedAC(Button clickedButton){
+        if(!historyText.equals("")){
+            historyList.add(historyText);
+        }
+        historyText = mainText;
         mainText="";
+        lastButtonEquals = false;
         return mainText;
     }
     public String clickedPeriod(Button clickedButton){
+        if(lastButtonEquals) {
+            historyText = mainText;
+            mainText=clickedButton.getText().toString();
+            lastButtonEquals = false;
+        }
+        else{
+            if(!mainText.contains(".")){
+                mainText+=clickedButton.getText().toString();
+            }
+        }
         if(!mainText.contains(".")){
             mainText+=clickedButton.getText();
         }
         return mainText;
     }
     public String clickedEqual(Button clickedButton){
-
-        Calculator calculator = new Calculator();
-        String equationString = equationStringChanger(mainText);
-        equationString.replace("ANS", historyText);
-        calculator.setExpression(equationString);
+        lastButtonEquals = true;
+        String equationString = mainText;
+        equationString = equationString.replace("ANS", historyText);
+        equationString=equationString.replace("  "," ");
         if(!historyText.equals("")){
             historyList.add(historyText);
         }
         historyText = mainText;
         try{
             //double result = calculator.getResult();
-            Evaluator evaluator = new Evaluator(mainText);
+            Evaluator evaluator = new Evaluator(equationString);
             String result = evaluator.evaluate();
             mainText = result+"";
         }
@@ -76,21 +126,6 @@ public CalculatorModel(){
 
         return mainText;
     }
-    private String equationStringChanger(String equation) {
-        if(!historyText.equals("")){
-            equation = equation.replaceAll("ans",historyText);
-        }
-        equation = equation.toLowerCase();
-        equation = equation.replaceAll("×","*");
-        equation = equation.replaceAll("÷","/");
-        equation = equation.replaceAll("π","PI");
-        equation = equation.replaceAll("SIN","sin");
-        equation = equation.replaceAll("COS","cos");
-        equation = equation.replaceAll("TAN","tan");
-        equation = equation.replaceAll(" ","");
 
-        //equation = equation.replaceAll("×","*");
-        return equation;
-    }
 
 }

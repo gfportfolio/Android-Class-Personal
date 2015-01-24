@@ -7,7 +7,7 @@
     <color name="numberbutton">#80D8FF</color>
     <color name="mainfunctionbutton">#00B0FF</color>
     <color name="functionbutton">#40C4FF</color>
-    <color name="lightbackround">#E1F5FE</color>
+    <color name="lightbackround">#AEEFFC</color>
     <dimen name="buttonfontsize">18dp</dimen>
     <dimen name="specialbuttonsfontsize">25dp</dimen>
 </resources>

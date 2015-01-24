@@ -49,13 +49,14 @@ public class MainActivity extends ActionBarActivity {
         Button clickedButton = (Button)v;
         mainTextView.setText(calc.functionButton(clickedButton.getText().toString()));
         clearButton.setText(R.string.backspace);
-
+        historyTextView.setText("ANS="+calc.historyText);
 
     }
     public void clickNumberButton(View v){
         Button clickedButton = (Button)v;
         mainTextView.setText(calc.numberButton(clickedButton.getText().toString()));
         clearButton.setText(R.string.backspace);
+        historyTextView.setText("ANS="+calc.historyText);
     }
 
     public void clickSpecialButton(View v){
@@ -64,7 +65,7 @@ public class MainActivity extends ActionBarActivity {
         switch(clickedButton.getText().toString()){
             case"CE":newText=calc.clickedCE(clickedButton);
                 break;
-            case"AC":newText = calc.clickedAC(clickedButton);
+            case"AC":newText = clickedAC(clickedButton);
                 break;
             case"=":newText = clickedEqual(clickedButton);
                 break;
@@ -72,14 +73,27 @@ public class MainActivity extends ActionBarActivity {
                 break;
         }
 
-
+        historyTextView.setText("ANS="+calc.historyText);
         mainTextView.setText(newText);
 
     }
 
+    private String clickedAC(Button clickedButton) {
+        clearButton.setText(R.string.backspace);
+        return calc.clickedAC(clickedButton);
+    }
+
+    private String clickedCE(Button clickedButton) {
+
+           String text =  calc.clickedCE(clickedButton);
+
+
+        return text;
+    }
+
     private String clickedEqual(Button clickedButton) {
         String r = calc.clickedEqual(clickedButton);
-        historyTextView.setText(calc.historyText);
+        clearButton.setText(R.string.clearall);
         return r;
     }
 
