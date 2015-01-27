@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import mathexpressioncalculator.Calculator;
 
 /**
  * Created by gavinfarnsworth on 1/22/15.

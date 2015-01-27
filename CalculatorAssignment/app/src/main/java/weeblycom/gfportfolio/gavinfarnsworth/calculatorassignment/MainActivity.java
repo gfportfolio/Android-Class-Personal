@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import mathexpressioncalculator.Calculator;
 
 
 public class MainActivity extends ActionBarActivity {
