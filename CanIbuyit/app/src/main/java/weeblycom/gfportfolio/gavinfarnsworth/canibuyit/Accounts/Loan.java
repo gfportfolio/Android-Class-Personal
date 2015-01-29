@@ -1,4 +1,4 @@
-package weeblycom.gfportfolio.gavinfarnsworth.canibuyit;
+package weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts;
 
 import java.util.Date;
 

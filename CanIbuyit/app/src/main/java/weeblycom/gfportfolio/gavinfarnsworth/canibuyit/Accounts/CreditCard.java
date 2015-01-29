@@ -1,4 +1,4 @@
-package weeblycom.gfportfolio.gavinfarnsworth.canibuyit;
+package weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts;
 
 import java.util.Date;
 
@@ -122,5 +122,10 @@ public class CreditCard extends Account {
 
     public void setAvailableBalance(double availableBalance) {
         this.availableBalance = availableBalance;
+    }
+
+    @Override
+    void sum() {
+
     }
 }

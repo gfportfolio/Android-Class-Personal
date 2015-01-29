@@ -1,4 +1,4 @@
-package weeblycom.gfportfolio.gavinfarnsworth.canibuyit;
+package weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts;
 
 import java.util.Date;
 
@@ -46,6 +46,11 @@ public class OtherAccount extends Account {
         this.dueDate= null;
         this.paymentAmount=0.0;
         this.availableBalance=0.0;
+    }
+
+    @Override
+    void sum() {
+
     }
 
     public double getOwedBalance() {

@@ -1,4 +1,4 @@
-package weeblycom.gfportfolio.gavinfarnsworth.canibuyit;
+package weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts;
 
 /**
  * Created by gavinfarnsworth on 1/27/15.
@@ -54,6 +54,11 @@ public class Saving extends Account {
         super(name);
         this.availableBalance =0.0;
         this.interest =1.0;
+    }
+
+    @Override
+    void sum() {
+
     }
 
     public double getAvailableBalance() {

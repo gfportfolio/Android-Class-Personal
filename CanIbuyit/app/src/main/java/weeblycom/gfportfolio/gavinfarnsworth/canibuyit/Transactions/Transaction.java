@@ -1,4 +1,4 @@
-package weeblycom.gfportfolio.gavinfarnsworth.canibuyit;
+package weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions;
 
 import org.w3c.dom.NameList;
 
@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by gavinfarnsworth on 1/27/15.
  */
-public class Transaction {
+public abstract class Transaction {
     private String name;
     private Double cost;
     private Date date;

@@ -1,11 +1,13 @@
-package weeblycom.gfportfolio.gavinfarnsworth.canibuyit;
+package weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts;
 
 import java.util.ArrayList;
+
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Transaction;
 
 /**
  * Created by gavinfarnsworth on 1/27/15.
  */
-public class Account {
+public abstract class Account {
     private String name;
     private String bank;
     private String type;
@@ -96,9 +98,7 @@ public class Account {
         return transactions;
     }
 
-    public void sum(){
-
-    }
+    abstract void sum();
     public void addTransaction(Transaction transaction){
         this.transactions.add(transaction);
 
