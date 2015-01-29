@@ -13,7 +13,16 @@ public class Transaction {
     private Date date;
     private String category;
     private boolean deposit;
+    private int accountID;
 
+    public Transaction(String name, Double cost, Date date, String category, boolean deposit, int accountID) {
+        this.name = name;
+        this.cost = cost;
+        this.date = date;
+        this.category = category;
+        this.deposit = deposit;
+        this.accountID = accountID;
+    }
 
     public Transaction(boolean deposit, String name, Double cost, Date date, String category) {
         this.deposit = deposit;
@@ -21,6 +30,7 @@ public class Transaction {
         this.cost = cost;
         this.date = date;
         this.category = category;
+
     }
 
     public Transaction(String Name, Double Cost, Date Date){
@@ -85,5 +95,13 @@ public class Transaction {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 }
