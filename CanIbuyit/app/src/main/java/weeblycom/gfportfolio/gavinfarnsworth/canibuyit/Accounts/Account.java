@@ -14,6 +14,7 @@ public abstract class Account {
     private double currentBalance;
     private boolean positive;
     private ArrayList<Transaction> transactions;
+    private ArrayList<Transaction> newTransactions;
 
 
 
@@ -24,6 +25,7 @@ public abstract class Account {
         this.currentBalance = currentBalance;
         this.positive = positive;
         this.transactions = new ArrayList<Transaction>();
+        this.newTransactions = new ArrayList<Transaction>();
     }
 
     public Account(String name, String type, double currentBalance, boolean positive) {
@@ -33,6 +35,7 @@ public abstract class Account {
         this.positive = positive;
         this.bank = "";
         this.transactions = new ArrayList<Transaction>();
+        this.newTransactions = new ArrayList<Transaction>();
     }
 
     public Account(String name, String type, double currentBalance) {
@@ -42,6 +45,7 @@ public abstract class Account {
         this.positive = true;
         this.bank ="";
         this.transactions = new ArrayList<Transaction>();
+        this.newTransactions = new ArrayList<Transaction>();
     }
 
     public Account(String name) {
@@ -51,6 +55,7 @@ public abstract class Account {
         this.positive = true;
         this.bank = "";
         this.transactions = new ArrayList<Transaction>();
+        this.newTransactions = new ArrayList<Transaction>();
     }
 
     public String getBank() {
@@ -102,5 +107,13 @@ public abstract class Account {
     public void addTransaction(Transaction transaction){
         this.transactions.add(transaction);
 
+    }
+    public void addNewTransaction(Transaction transaction){
+        this.newTransactions.add(transaction);
+
+    }
+
+    public ArrayList<Transaction> getNewTransactions() {
+        return newTransactions;
     }
 }
