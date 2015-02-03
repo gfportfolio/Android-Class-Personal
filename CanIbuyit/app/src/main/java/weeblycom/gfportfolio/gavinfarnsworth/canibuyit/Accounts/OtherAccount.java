@@ -12,36 +12,8 @@ public class OtherAccount extends Account {
     private double paymentAmount;
     private double availableBalance;
 
-    public OtherAccount(String name, String bank,  double currentBalance, boolean positive) {
-        super(name, bank, "Other Account", currentBalance, positive);
-        this.owedBalance=0.0;
-        this.interest=1.0;
-        this.dueDate= null;
-        this.paymentAmount=0.0;
-        this.availableBalance=0.0;
-    }
-
-    public OtherAccount(String name,  double currentBalance, boolean positive) {
-        super(name, "Other Account", currentBalance, positive);
-        this.owedBalance=0.0;
-        this.interest=1.0;
-        this.dueDate= null;
-        this.paymentAmount=0.0;
-        this.availableBalance=0.0;
-    }
-
-    public OtherAccount(String name, String type, double currentBalance) {
-        super(name, "Other Account", currentBalance);
-        this.owedBalance=0.0;
-        this.interest=1.0;
-        this.dueDate= null;
-        this.paymentAmount=0.0;
-        this.availableBalance=0.0;
-    }
-
-    public OtherAccount(String name) {
-        super(name);
-        super.setType("Other Account");
+    public OtherAccount(String name, String bank,  double currentBalance, boolean positive, int id) {
+        super(name, bank, "Other Account", currentBalance, positive, id);
         this.owedBalance=0.0;
         this.interest=1.0;
         this.dueDate= null;

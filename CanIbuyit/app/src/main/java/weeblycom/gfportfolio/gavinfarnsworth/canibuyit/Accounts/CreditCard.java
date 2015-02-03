@@ -11,17 +11,26 @@ public class CreditCard extends Account {
     private Date dueDate;
     private double paymentAmount;
     private double availableBalance;
+    private double limit;
 
-    public CreditCard(String name, String bank, double currentBalance, boolean positive, double owedBalance, double interest, Date dueDate, double paymentAmount, double availableBalance) {
-        super(name, bank, "Credit Card", currentBalance, positive);
+    public CreditCard(String name, String bank, double currentBalance, double owedBalance, double interest, Date dueDate, double paymentAmount, double availableBalance, double limit, int id) {
+        super(name, bank, "Credit Card", currentBalance, false, id);
         this.owedBalance = owedBalance;
         this.interest = interest;
         this.dueDate = dueDate;
         this.paymentAmount = paymentAmount;
         this.availableBalance = availableBalance;
+        this.limit = limit;
+
     }
 
+    public double getLimit() {
+        return limit;
+    }
 
+    public void setLimit(double limit) {
+        this.limit = limit;
+    }
 
     public double getOwedBalance() {
         return owedBalance;

@@ -15,10 +15,11 @@ public abstract class Account {
     private boolean positive;
     private ArrayList<Transaction> transactions;
     private ArrayList<Transaction> newTransactions;
+    private int id;
 
 
 
-    public Account(String name, String bank, String type, double currentBalance, boolean positive) {
+    public Account(String name, String bank, String type, double currentBalance, boolean positive, int id) {
         this.name = name;
         this.bank = bank;
         this.type = type;
@@ -26,36 +27,7 @@ public abstract class Account {
         this.positive = positive;
         this.transactions = new ArrayList<Transaction>();
         this.newTransactions = new ArrayList<Transaction>();
-    }
-
-    public Account(String name, String type, double currentBalance, boolean positive) {
-        this.name = name;
-        this.type = type;
-        this.currentBalance = currentBalance;
-        this.positive = positive;
-        this.bank = "";
-        this.transactions = new ArrayList<Transaction>();
-        this.newTransactions = new ArrayList<Transaction>();
-    }
-
-    public Account(String name, String type, double currentBalance) {
-        this.name = name;
-        this.type = type;
-        this.currentBalance = currentBalance;
-        this.positive = true;
-        this.bank ="";
-        this.transactions = new ArrayList<Transaction>();
-        this.newTransactions = new ArrayList<Transaction>();
-    }
-
-    public Account(String name) {
-        this.name = name;
-        this.type = "";
-        this.currentBalance =0.0;
-        this.positive = true;
-        this.bank = "";
-        this.transactions = new ArrayList<Transaction>();
-        this.newTransactions = new ArrayList<Transaction>();
+        this.id = id;
     }
 
     public String getBank() {

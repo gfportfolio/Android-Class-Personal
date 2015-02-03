@@ -7,8 +7,8 @@ public class CheckingAccount extends Account {
     private double availableBalance;
 
 
-    public CheckingAccount(String name, String bank, double currentBalance, boolean positive, double availableBalance) {
-        super(name, bank, "Checking Account", currentBalance, positive);
+    public CheckingAccount(String name, String bank, double currentBalance, boolean positive, double availableBalance, int id) {
+        super(name, bank, "Checking Account", currentBalance, positive, id);
         this.availableBalance = availableBalance;
     }
 
