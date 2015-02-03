@@ -12,8 +12,8 @@ public class CreditCard extends Account {
     private double paymentAmount;
     private double availableBalance;
 
-    public CreditCard(String name, String bank, String type, double currentBalance, boolean positive, double owedBalance, double interest, Date dueDate, double paymentAmount, double availableBalance) {
-        super(name, bank, type, currentBalance, positive);
+    public CreditCard(String name, String bank, double currentBalance, boolean positive, double owedBalance, double interest, Date dueDate, double paymentAmount, double availableBalance) {
+        super(name, bank, "Credit Card", currentBalance, positive);
         this.owedBalance = owedBalance;
         this.interest = interest;
         this.dueDate = dueDate;
@@ -21,68 +21,7 @@ public class CreditCard extends Account {
         this.availableBalance = availableBalance;
     }
 
-    public CreditCard(String name, String type, double currentBalance, boolean positive, double owedBalance, double interest, Date dueDate, double paymentAmount, double availableBalance) {
-        super(name, type, currentBalance, positive);
-        this.owedBalance = owedBalance;
-        this.interest = interest;
-        this.dueDate = dueDate;
-        this.paymentAmount = paymentAmount;
-        this.availableBalance = availableBalance;
-    }
 
-    public CreditCard(String name, String type, double currentBalance, double owedBalance, double interest, Date dueDate, double paymentAmount, double availableBalance) {
-        super(name, type, currentBalance);
-        this.owedBalance = owedBalance;
-        this.interest = interest;
-        this.dueDate = dueDate;
-        this.paymentAmount = paymentAmount;
-        this.availableBalance = availableBalance;
-    }
-
-    public CreditCard(String name, double owedBalance, double interest, Date dueDate, double paymentAmount, double availableBalance) {
-        super(name);
-        this.owedBalance = owedBalance;
-        this.interest = interest;
-        this.dueDate = dueDate;
-        this.paymentAmount = paymentAmount;
-        this.availableBalance = availableBalance;
-    }
-
-    public CreditCard(String name, String bank, String type, double currentBalance, boolean positive, double owedBalance, double interest, Date dueDate, double paymentAmount) {
-        super(name, bank, type, currentBalance, positive);
-        this.owedBalance = owedBalance;
-        this.interest = interest;
-        this.dueDate = dueDate;
-        this.paymentAmount = paymentAmount;
-        this.availableBalance=0.0;
-    }
-
-    public CreditCard(String name, String type, double currentBalance, boolean positive, double owedBalance, double interest, Date dueDate, double paymentAmount) {
-        super(name, type, currentBalance, positive);
-        this.owedBalance = owedBalance;
-        this.interest = interest;
-        this.dueDate = dueDate;
-        this.paymentAmount = paymentAmount;
-        this.availableBalance=0.0;
-    }
-
-    public CreditCard(String name, String type, double currentBalance, double owedBalance, double interest, Date dueDate, double paymentAmount) {
-        super(name, type, currentBalance);
-        this.owedBalance = owedBalance;
-        this.interest = interest;
-        this.dueDate = dueDate;
-        this.paymentAmount = paymentAmount;
-        this.availableBalance=0.0;
-    }
-
-    public CreditCard(String name, double owedBalance, double interest, Date dueDate, double paymentAmount) {
-        super(name);
-        this.owedBalance = owedBalance;
-        this.interest = interest;
-        this.dueDate = dueDate;
-        this.paymentAmount = paymentAmount;
-        this.availableBalance=0.0;
-    }
 
     public double getOwedBalance() {
         return owedBalance;

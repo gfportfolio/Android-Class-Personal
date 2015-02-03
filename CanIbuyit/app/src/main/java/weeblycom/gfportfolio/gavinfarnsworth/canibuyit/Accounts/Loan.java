@@ -12,24 +12,24 @@ public class Loan extends Account {
     private double paymentAmount;
 
 
-    public Loan(String name, String bank, String type, double currentBalance, boolean positive, double paymentAmount, double owedBalance, double interest, Date dueDate) {
-        super(name, bank, type, currentBalance, positive);
+    public Loan(String name, String bank,  double currentBalance, boolean positive, double paymentAmount, double owedBalance, double interest, Date dueDate) {
+        super(name, bank, "Loan", currentBalance, positive);
         this.paymentAmount = paymentAmount;
         this.owedBalance = owedBalance;
         this.interest = interest;
         this.dueDate = dueDate;
     }
 
-    public Loan(String name, String type, double currentBalance, boolean positive, double paymentAmount, double owedBalance, double interest, Date dueDate) {
-        super(name, type, currentBalance, positive);
+    public Loan(String name, double currentBalance, boolean positive, double paymentAmount, double owedBalance, double interest, Date dueDate) {
+        super(name, "Loan", currentBalance, positive);
         this.paymentAmount = paymentAmount;
         this.owedBalance = owedBalance;
         this.interest = interest;
         this.dueDate = dueDate;
     }
 
-    public Loan(String name, String type, double currentBalance, double paymentAmount, double owedBalance, double interest, Date dueDate) {
-        super(name, type, currentBalance);
+    public Loan(String name,  double currentBalance, double paymentAmount, double owedBalance, double interest, Date dueDate) {
+        super(name, "Loan", currentBalance);
         this.paymentAmount = paymentAmount;
         this.owedBalance = owedBalance;
         this.interest = interest;
@@ -38,6 +38,7 @@ public class Loan extends Account {
 
     public Loan(String name, double paymentAmount, double owedBalance, double interest, Date dueDate) {
         super(name);
+        super.setType("Loan");
         this.paymentAmount = paymentAmount;
         this.owedBalance = owedBalance;
         this.interest = interest;
