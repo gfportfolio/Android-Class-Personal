@@ -75,6 +75,14 @@ public abstract class Account {
         return transactions;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     abstract void sum();
     public void addTransaction(Transaction transaction){
         this.transactions.add(transaction);

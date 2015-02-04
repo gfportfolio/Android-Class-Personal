@@ -1,8 +1,10 @@
 package weeblycom.gfportfolio.gavinfarnsworth.canibuyit;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts.Account;
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts.AccountFactory;
 
 /**
  * Created by gavinfarnsworth on 2/1/15.
@@ -10,6 +12,7 @@ import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts.Account;
 public class AccountManager {
     private ArrayList<Account> currentAccounts;
     private ArrayList<String> accountTypes;
+
 
     public AccountManager() {
         currentAccounts = new ArrayList<Account>();
@@ -29,12 +32,26 @@ public class AccountManager {
         return accountTypes;
     }
 
-    public boolean addAccount(Account account){
-        currentAccounts.add(account);
+    public boolean addAccount(String type, String name, String bank, double currentBalance, boolean positive, double owedBalance, double interest,  Date dueDate, double paymentAmount, double availableBalance, double limit){
+        int currentID = currentAccounts.size();
+        currentID++;
+        AccountFactory factory = new AccountFactory(type,  name,  bank,  currentBalance,  positive,  owedBalance,  interest,   dueDate,  paymentAmount,  availableBalance,  limit,  currentID);
+        Account newAccount = factory.makeAccount();
+        currentAccounts.add(newAccount);
         return true;
     }
-    public boolean removeAccount(Account account){
-        currentAccounts.remove(account);
+    public boolean removeAccount(int id){
+
+        Account RemoveAccount=null;
+        for(Account a : currentAccounts){
+            if(a.getId()==id){
+                RemoveAccount=a;
+            }
+        }
+        if(RemoveAccount==null){
+            return false;
+        }
+        currentAccounts.remove(RemoveAccount);
         return true;
     }
     public boolean addAccountType(String type){

@@ -28,65 +28,13 @@ public class MoneyManager {
         this.transactionManager = transactionManager;
     }
     public boolean addAccount(String type, String name, String bank, double currentBalance, boolean positive, double owedBalance, double interest,  Date dueDate, double paymentAmount, double availableBalance, double limit) {
-        Account newAccount = null;
-        switch (type) {
-            case "CheckingAccount":
-                newAccount=addCheckingAccount(name, bank, currentBalance, positive, availableBalance);
-            case "CreditCard":
-                newAccount=addCreditCard( name,  bank,  currentBalance, owedBalance,  interest,  dueDate,  paymentAmount,  availableBalance, limit);
-            case "Loan":
-                newAccount=addLoan( name,  bank, currentBalance, paymentAmount,  owedBalance,  interest,  dueDate);
-            case "OtherAccount":
-                newAccount=addOtherAccount( name,  bank,   currentBalance,  positive);
-            case "Savings":
-                newAccount=addSavingsAccount( name,  bank,  currentBalance, availableBalance,  interest);
-        }
-        return true;
+        return accountManager.addAccount( type,  name,  bank,  currentBalance,  positive,  owedBalance,  interest,   dueDate,  paymentAmount,  availableBalance,  limit);
     }
 
-    private SavingsAccount addSavingsAccount(String name, String bank,  double currentBalance, double availableBalance, double interest) {
-       SavingsAccount newAccount = new SavingsAccount(name,  bank,   currentBalance,  availableBalance,  interest);
-        //String name, String bank, String type, double currentBalance, boolean positive, double availableBalance, double interest
-        return newAccount;
-    }
 
-    private OtherAccount addOtherAccount(String name, String bank,  double currentBalance, boolean positive) {
-       OtherAccount newAccount = new OtherAccount(name,  bank,   currentBalance,  positive);
-       // String name, String bank,  double currentBalance, boolean positive
-       return newAccount;
-    }
 
-    private Loan addLoan(String name, String bank,  double currentBalance, double paymentAmount, double owedBalance, double interest, Date dueDate) {
-        Loan newAccount = new Loan(name,  bank, currentBalance, paymentAmount,  owedBalance,  interest,  dueDate);
-        //String name, String bank,  double currentBalance, boolean positive, double paymentAmount, double owedBalance, double interest, Date dueDate
-        return newAccount;
-    }
-
-    private CreditCard addCreditCard(String name, String bank, double currentBalance,  double owedBalance, double interest, Date dueDate, double paymentAmount, double availableBalance, double limit) {
-       CreditCard newAccount = new CreditCard(name,  bank,  currentBalance,   owedBalance,  interest,  dueDate,  paymentAmount,  availableBalance, limit);
-       // String name, String bank, double currentBalance, boolean positive, double owedBalance, double interest, Date dueDate, double paymentAmount, double availableBalance
-        return newAccount;
-    }
-
-    private CheckingAccount addCheckingAccount(String name, String bank, double currentBalance, boolean positive, double availableBalance) {
-        CheckingAccount newAccount = new CheckingAccount(name, bank, currentBalance, positive, availableBalance);
-        //String name, String bank, double currentBalance, boolean positive, double availableBalance
-        return newAccount;
-    }
-
-    private Boolean removeAccount(String type, String Name, String Bank){
-        ArrayList<Account> accountList = accountManager.getCurrentAccounts();
-        Account RemoveAccount=null;
-        for(Account a : accountList){
-            if(a.getBank()==Bank&&a.getName()==Name&&a.getType()==type){
-                RemoveAccount=a;
-            }
-        }
-        if(RemoveAccount==null){
-            return false;
-        }
-        accountManager.removeAccount(RemoveAccount);
-        return true;
+    private Boolean removeAccount(int id){
+        return accountManager.removeAccount(id);
     }
 }
 
