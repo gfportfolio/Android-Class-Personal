@@ -5,44 +5,41 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
-import static weeblycom.gfportfolio.gavinfarnsworth.wandshop.R.drawable.sorcerermickeyhat;
 
-
-public class MainActivity extends ActionBarActivity {
-    private TextView brandTextView;
+public class Edit extends ActionBarActivity {
+    private EditText brandEditText;
+    private ExpandableListView powerView;
     private TextView maxTextView;
     private TextView chargeTextView;
-    private TextView powerTextView;
-    private ImageView powerImageView;
-    
+    private SeekBar maxPowerSlider;
+    private SeekBar chargePowerSlider;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-    }
-    public void onAddClick(View v){
-
+        setContentView(R.layout.activity_edit);
     }
 
-    public void onNextClick(View v){
 
-    }
-    public void onPreviousClick(View v){
-
-    }
-    public void onEditClick(View v){
-
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_edit, menu);
         return true;
+    }
+
+    private void onDeleteClick(View v){
+
+    }
+    private void onAddClick(View v){
+
     }
 
     @Override

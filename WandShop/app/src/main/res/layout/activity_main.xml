@@ -3,9 +3,126 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="@color/dark">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editButton"
+        android:src="@android:drawable/ic_menu_edit"
+        android:background="@color/dark"
+        android:layout_weight=".25"
+        android:layout_gravity="right"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:translationZ="10dp"
+        android:onClick="onEditClick" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/addButton"
+        android:background="@color/dark"
+        android:src="@drawable/add"
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onAddClick" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1"
+        android:id="@+id/main"
+        android:layout_above="@+id/addButton">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Galivanders"
+            android:id="@+id/brandTextView"
+            android:layout_gravity="center_horizontal|right"
+            android:layout_weight="0.05"
+            android:textColor="@color/light"
+            android:textSize="@dimen/textSize"
+            android:textStyle="bold|italic"
+            android:textAlignment="gravity"
+            android:translationZ="0dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerImageView"
+            android:src="@drawable/sorcerermickeyhat"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Mickey&apos;s Sorcerer Hat"
+            android:id="@+id/powerTextView"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/light"
+            android:paddingTop="@dimen/textPadding"
+            android:textSize="@dimen/textSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Max: 1000 mp"
+            android:id="@+id/maxTextView"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/light"
+            android:paddingTop="@dimen/textPadding"
+            android:textSize="@dimen/textSize" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Charge: 500 mp (5%)"
+            android:id="@+id/chargeTextView"
+            android:layout_gravity="right"
+            android:textColor="@color/light"
+            android:paddingTop="@dimen/textPadding"
+            android:textSize="@dimen/textSize" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/backButton"
+        android:layout_alignBottom="@+id/addButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@android:drawable/ic_media_previous"
+        android:background="@color/dark"
+        android:paddingBottom="@dimen/buttonPadding"
+        android:onClick="onPreviousClick" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextButton"
+        android:layout_alignBottom="@+id/backButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@android:drawable/ic_media_next"
+        android:layout_alignTop="@+id/backButton"
+        android:background="@color/dark"
+        android:paddingBottom="@dimen/buttonPadding"
+        android:scaleType="fitCenter"
+        android:onClick="onNextClick" />
 
 </RelativeLayout>
