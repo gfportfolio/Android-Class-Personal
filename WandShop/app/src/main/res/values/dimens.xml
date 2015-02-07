@@ -8,7 +8,7 @@
     <color name="light">#D1C4E9</color>
     <color name="text">#EDE7F6</color>
     <dimen name="textPadding">10px</dimen>
-    <dimen name="textSize">90px</dimen>
+    <dimen name="textSize">70px</dimen>
     <dimen name="buttonPadding">80px</dimen>
     <dimen name="smallTextSize">60px</dimen>
 </resources>

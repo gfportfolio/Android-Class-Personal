@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class WandManager {
     private ArrayList<WandImage> wandOptions;
     private ArrayList<MagicWand> magicWands;
-
+    private int currentWand;
     public WandManager() {
         wandOptions = new ArrayList<>();
         wandOptions.add(new WandImage("Mickey's Sorcerer Hat", R.drawable.sorcerermickeyhat));
@@ -21,13 +21,13 @@ public class WandManager {
         wandOptions.add(new WandImage("Aladan's Lamp", R.drawable.aladanlamp));
         //String brand, int currentMagicPoints, int maxMagicPoints, WandImage image
         magicWands = new ArrayList<MagicWand>();
-        magicWands.add(new MagicWand("Disney's",5000,5000, wandOptions.get(0)));
+        magicWands.add(new MagicWand("Disney's",5000,5000, wandOptions.get(1)));
         magicWands.add(new MagicWand("Galivander's",4000,3000, wandOptions.get(0)));
         magicWands.add(new MagicWand("Pixar's",3000,2000, wandOptions.get(0)));
         magicWands.add(new MagicWand("Google's",2000,5000, wandOptions.get(0)));
+        currentWand =0;
+
     }
-
-
 
 
     public ArrayList<String> getWandTypeNames(){
@@ -39,7 +39,11 @@ public class WandManager {
     }
 
     public MagicWand getWond(int location){
+
         return magicWands.get(location);
+    }
+    public MagicWand getCurrentWond(){
+        return getWond(currentWand);
     }
 
     public MagicWand addWond(String company, int maxMagic, int currentMagic, String wandType){
@@ -58,6 +62,33 @@ public class WandManager {
         }
         return null;
     }
+    public MagicWand saveEditWand(int id, String company, int maxMagic, int currentMagic, String wandType){
+        MagicWand thisWand = getWond(id);
+        int wandIndex= magicWands.indexOf(thisWand);
+        WandImage thisImage = getWandType(wandType);
+        thisWand.setImage(thisImage);
+        thisWand.setBrand(company);
+        thisWand.setCurrentMagicPoints(currentMagic);
+        thisWand.setMaxMagicPoints(maxMagic);
+        magicWands.remove(wandIndex);
+        magicWands.add(wandIndex, thisWand);
+        return thisWand;
 
+    }
+    public MagicWand changeWond(boolean forward){
+        if(forward){
+            currentWand++;
+            if(currentWand>magicWands.size()-1){
+                currentWand=0;
+            }
+        }
+        else{
+            currentWand--;
+            if(currentWand<0){
+                currentWand=magicWands.size()-1;
+            }
+        }
+        return getWond(currentWand);
+    }
 
 }

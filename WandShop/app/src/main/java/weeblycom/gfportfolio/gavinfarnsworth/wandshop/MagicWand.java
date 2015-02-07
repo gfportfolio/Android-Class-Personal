@@ -12,6 +12,7 @@ public class MagicWand {
 	private int maxMagicPoints;
 	private String magicCore;
     private WandImage image;
+
 	/**
 	 * This is the no argument constructor
 	 * When a Wand is created using this constructor it has
@@ -128,7 +129,35 @@ public class MagicWand {
         return image;
     }
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setCurrentMagicPoints(int currentMagicPoints) {
+        this.currentMagicPoints = currentMagicPoints;
+    }
+
+    public void setMaxMagicPoints(int maxMagicPoints) {
+        this.maxMagicPoints = maxMagicPoints;
+    }
+
+    public void setMagicCore(String magicCore) {
+        this.magicCore = magicCore;
+    }
+
     public void setImage(WandImage image) {
         this.image = image;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public int getCurrentMagicPoints() {
+        return currentMagicPoints;
+    }
+
+    public int getMaxMagicPoints() {
+        return maxMagicPoints;
     }
 }
