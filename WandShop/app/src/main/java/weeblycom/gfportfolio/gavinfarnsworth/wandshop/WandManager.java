@@ -13,18 +13,18 @@ public class WandManager {
     private int currentWand;
     public WandManager() {
         wandOptions = new ArrayList<>();
-        wandOptions.add(new WandImage("Mickey's Sorcerer Hat", R.drawable.sorcerermickeyhat));
-        wandOptions.add(new WandImage("Minnie's Bow", R.drawable.minniebow));
-        wandOptions.add(new WandImage("Pluto's Bone", R.drawable.plutobone));
-        wandOptions.add(new WandImage("Elsa's Snowflake", R.drawable.elsasnow));
-        wandOptions.add(new WandImage("Cinderella's Slipper", R.drawable.cinderellaslipper));
-        wandOptions.add(new WandImage("Aladan's Lamp", R.drawable.aladanlamp));
+        wandOptions.add(new WandImage("Mickey's Sorcerer Hat", R.drawable.sorcerermickeyhatpng));
+        wandOptions.add(new WandImage("Minnie's Bow", R.drawable.minniebowpng));
+        wandOptions.add(new WandImage("Pluto's Bone", R.drawable.plutobonepng));
+        wandOptions.add(new WandImage("Elsa's Snowflake", R.drawable.elsasnowpng));
+        wandOptions.add(new WandImage("Cinderella's Slipper", R.drawable.cinderellaslipperpng));
+        wandOptions.add(new WandImage("Aladan's Lamp", R.drawable.aladanlamppng));
         //String brand, int currentMagicPoints, int maxMagicPoints, WandImage image
         magicWands = new ArrayList<MagicWand>();
         magicWands.add(new MagicWand("Disney's",5000,5000, wandOptions.get(1)));
-        magicWands.add(new MagicWand("Galivander's",4000,3000, wandOptions.get(0)));
-        magicWands.add(new MagicWand("Pixar's",3000,2000, wandOptions.get(0)));
-        magicWands.add(new MagicWand("Google's",2000,5000, wandOptions.get(0)));
+        magicWands.add(new MagicWand("Galivander's",3000,4000, wandOptions.get(0)));
+        magicWands.add(new MagicWand("Pixar's",2000,3000, wandOptions.get(2)));
+        magicWands.add(new MagicWand("Google's",2000,5000, wandOptions.get(3)));
         currentWand =0;
 
     }

@@ -24,7 +24,7 @@
         android:layout_height="80dp"
         android:id="@+id/addButton"
         android:background="@color/dark"
-        android:src="@drawable/add"
+        android:src="@drawable/addpng"
         android:scaleType="fitXY"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_alignParentBottom="true"
