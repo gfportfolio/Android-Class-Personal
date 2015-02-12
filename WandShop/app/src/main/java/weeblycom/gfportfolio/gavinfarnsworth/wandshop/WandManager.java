@@ -91,4 +91,7 @@ public class WandManager {
         return getWond(currentWand);
     }
 
+    public ArrayList<WandImage> getWandOptions() {
+        return wandOptions;
+    }
 }

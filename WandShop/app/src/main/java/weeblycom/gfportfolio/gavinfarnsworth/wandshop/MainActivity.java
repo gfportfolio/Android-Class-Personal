@@ -1,5 +1,6 @@
 package weeblycom.gfportfolio.gavinfarnsworth.wandshop;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import static weeblycom.gfportfolio.gavinfarnsworth.wandshop.R.drawable.sorcerermickeyhat;
 
@@ -33,6 +36,11 @@ public class MainActivity extends ActionBarActivity {
 
         setCurrentDetails(wandManager.getCurrentWond());
 
+
+        //Remove if can pass
+        globals.wandOptions= new ArrayList<WandImage>();
+        globals.wandOptions.addAll(wandManager.getWandOptions());
+
     }
 
     public void onAddClick(View v){
@@ -50,17 +58,23 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onEditClick(View v){
-
+        Intent i = new Intent(getApplicationContext(), Edit.class);
+        globals.editingWand=wandManager.getCurrentWond();
+        globals.editing=true;
+        startActivity(i);
     }
+
+
 
     private void setCurrentDetails(MagicWand magicWand){
           brandTextView.setText(magicWand.getBrand());
           maxTextView.setText(getString(R.string.max)+magicWand.getMaxMagicPoints()+"");
-          double max = magicWand.getMaxMagicPoints();
-          double charge = magicWand.getCurrentMagicCharge();
-          double percent = (charge/max)*100;
+          float max = magicWand.getMaxMagicPoints();
+          float charge = magicWand.getCurrentMagicCharge();
+          float percent = (charge/max)*100;
+          percent = Math.round(percent);
           chargeTextView.setText(getString(R.string.charge)+magicWand.getCurrentMagicCharge()+" ("+percent+"%)");
-          powerTextView.setText(magicWand.getImage().getName());
+          powerTextView.setText(getString(R.string.core)+magicWand.getImage().getName());
           powerImageView.setImageResource(magicWand.getImage().getImageResourceNumber());
     }
 

@@ -40,17 +40,17 @@
                 android:textSize="@dimen/smallTextSize" />
         </LinearLayout>
 
-        <ExpandableListView
-            android:layout_width="wrap_content"
-            android:layout_height="244dp"
-            android:id="@+id/powerListView" />
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerSpinner" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/max"
-            android:id="@+id/textView6"
+            android:id="@+id/editMaxChargeTextView"
             android:textSize="@dimen/textSize"
             android:textColor="@color/light" />
 
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/charge"
-            android:id="@+id/textView7"
+            android:id="@+id/editChargeTextView"
             android:textSize="@dimen/textSize"
             android:textColor="@color/light" />
 
