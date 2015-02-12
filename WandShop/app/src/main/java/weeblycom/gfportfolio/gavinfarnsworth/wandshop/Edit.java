@@ -1,10 +1,12 @@
 package weeblycom.gfportfolio.gavinfarnsworth.wandshop;
 
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
@@ -26,6 +28,8 @@ public class Edit extends ActionBarActivity {
     private SeekBar chargePowerSlider;
     private Spinner powerSpinner;
     private boolean edit;
+    private ImageView powerImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +40,32 @@ public class Edit extends ActionBarActivity {
         chargePowerSlider = (SeekBar) findViewById(R.id.chargeSlider);
         chargeTextView = (TextView) findViewById(R.id.editChargeTextView);
         maxTextView = (TextView) findViewById(R.id.editMaxChargeTextView);
-       // powerView = (ExpandableListView) findViewById(R.id.powerListView);
         brandEditText = (EditText) findViewById(R.id.brandEditText);
         powerSpinner =(Spinner) findViewById(R.id.powerSpinner);
-
+        powerImage = (ImageView) findViewById(R.id.powerImageView);
         setupSeekListeners();
         updatePowerValues();
-        //ImageView mickey = new ImageView(this);
-        List<String> list = new ArrayList<String>();
-        list.add("list 1");
-        list.add("list 2");
-        list.add("list 3");
-        //mickey.setImageResource(globals.wandOptions.get(0).getImageResourceNumber());
+        List<String> powersList = new ArrayList<String>();
+        for(WandImage wand : globals.wandManager.getWandOptions()){
+            powersList.add(wand.getName());
+        }
+        powerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_single_choice, list);
+                android.R.layout.simple_list_item_single_choice, powersList);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         powerSpinner.setAdapter(dataAdapter);
-        //powerView.addView(mickey);
+
 
 
     }
