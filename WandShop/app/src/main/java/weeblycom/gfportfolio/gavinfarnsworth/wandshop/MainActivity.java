@@ -45,7 +45,6 @@ public class MainActivity extends ActionBarActivity {
 
     public void onAddClick(View v){
         Intent i = new Intent(getApplicationContext(), Edit.class);
-        globals.editingWand=globals.wandManager.getCurrentWond();
         globals.editing=false;
         startActivity(i);
     }
@@ -64,11 +63,14 @@ public class MainActivity extends ActionBarActivity {
         Intent i = new Intent(getApplicationContext(), Edit.class);
         globals.editingWand=globals.wandManager.getCurrentWond();
         globals.editing=true;
-        globals.adding=false;
         startActivity(i);
     }
 
-
+    @Override
+    protected  void onResume(){
+        super.onResume();
+        setCurrentDetails(globals.wandManager.getCurrentWond());
+    }
 
     private void setCurrentDetails(MagicWand magicWand){
           brandTextView.setText(magicWand.getBrand());

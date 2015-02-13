@@ -52,7 +52,14 @@ public class WandManager {
         magicWands.add(newWond);
         return newWond;
     }
-
+    public void addNew(MagicWand wond){
+        magicWands.add(wond);
+        currentWand = magicWands.size()-1;
+    }
+    public void editCurrent(MagicWand wond){
+        magicWands.remove(currentWand);
+        magicWands.add(currentWand,wond);
+    }
     private WandImage getWandType(String wandType){
 
         for (WandImage img: wandOptions){
@@ -90,7 +97,10 @@ public class WandManager {
         }
         return getWond(currentWand);
     }
-
+    public void removeWond(MagicWand current){
+        magicWands.remove(current);
+        currentWand=0;
+    }
     public ArrayList<WandImage> getWandOptions() {
         return wandOptions;
     }

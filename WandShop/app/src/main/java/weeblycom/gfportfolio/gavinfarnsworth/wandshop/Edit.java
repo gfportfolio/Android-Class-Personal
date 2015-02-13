@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -27,10 +28,9 @@ public class Edit extends ActionBarActivity {
     private SeekBar maxPowerSlider;
     private SeekBar chargePowerSlider;
     private Spinner powerSpinner;
-    private boolean edit;
-    private ImageView powerImage;
-
-
+    private ImageView editPowerImageView;
+    private int currentSelected;
+    List<String> powersList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,17 +42,19 @@ public class Edit extends ActionBarActivity {
         maxTextView = (TextView) findViewById(R.id.editMaxChargeTextView);
         brandEditText = (EditText) findViewById(R.id.brandEditText);
         powerSpinner =(Spinner) findViewById(R.id.powerSpinner);
-        powerImage = (ImageView) findViewById(R.id.powerImageView);
+        editPowerImageView = (ImageView) findViewById(R.id.editPowerImageView);
+        editPowerImageView.setImageResource(R.drawable.sorcerermickeyhatpng);
         setupSeekListeners();
         updatePowerValues();
-        List<String> powersList = new ArrayList<String>();
+        powersList = new ArrayList<String>();
         for(WandImage wand : globals.wandManager.getWandOptions()){
             powersList.add(wand.getName());
         }
         powerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                editPowerImageView.setImageResource(globals.wandManager.getWandOptions().get(position).getImageResourceNumber());
+                currentSelected = position;
             }
 
             @Override
@@ -66,9 +68,34 @@ public class Edit extends ActionBarActivity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         powerSpinner.setAdapter(dataAdapter);
 
+        setupAddEditScreen();
 
 
     }
+    private int getListNumberFromString(String name){
+        for(int i = 0; i<powersList.size(); i++){
+            if(powersList.get(i).equals(name)){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+
+    private void setupAddEditScreen(){
+        if(globals.editing){
+           MagicWand wand =globals.wandManager.getCurrentWond();
+           brandEditText.setText(wand.getBrandName());
+           powerSpinner.setSelection(getListNumberFromString(wand.getMagicCore()));
+            int maxPoint =wand.getMaxMagicPoints();
+           maxPowerSlider.setProgress(maxPoint);
+            int currentPoints = wand.getCurrentMagicCharge();
+            chargePowerSlider.setProgress(100*currentPoints/maxPoint);
+            updatePowerValues();
+        }
+
+    }
+
     private int updatePowerValues(){
         int maxPowerSliderValue = maxPowerSlider.getProgress();
         maxTextView.setText(getString(R.string.max)+" "+maxPowerSliderValue+" "+getString(R.string.mp));
@@ -129,12 +156,36 @@ public class Edit extends ActionBarActivity {
     }
 
 
-    private void onDeleteClick(View v){
-
+    public void onEditDeleteClick(View v){
+        if(globals.editing){
+            globals.wandManager.removeWond(globals.wandManager.getCurrentWond());
+        }
+        finish();
     }
-    private void onAddClick(View v){
+    public void onEditAddClick(View v){
+        String currentBrand = brandEditText.getText().toString();
+        int currentMax = maxPowerSlider.getProgress();
+        int currentCharge = chargePowerSlider.getProgress();
+        int Charge=0;
+        if(currentCharge>0) {
+            double percent = currentCharge;
+            percent = percent/100;
+            float charge = (float) (percent * currentMax);
+            Charge= Math.round(charge);
+        }
+        currentCharge = (currentCharge/100)*currentMax;
+        WandImage currentWandImage = globals.wandOptions.get(currentSelected);
+        MagicWand currentWand = new MagicWand(currentBrand,Charge,currentMax,currentWandImage);
+        if(globals.editing){
+            globals.wandManager.editCurrent(currentWand);
+        }
+        else{
+            globals.wandManager.addNew(currentWand);
 
+        }
+        finish();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
