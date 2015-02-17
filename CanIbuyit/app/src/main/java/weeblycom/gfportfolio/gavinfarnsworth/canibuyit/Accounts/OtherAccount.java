@@ -23,6 +23,8 @@ public class OtherAccount extends Account {
 
     @Override
     void sum() {
+        double newTransactionsTotal=sumNewTrasactions();
+        super.setCurrentBalance(super.getCurrentBalance()+newTransactionsTotal);
 
     }
 

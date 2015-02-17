@@ -1,5 +1,7 @@
 package weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts;
 
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Transaction;
+
 /**
  * Created by gavinfarnsworth on 1/27/15.
  */
@@ -16,7 +18,9 @@ public class CheckingAccount extends Account {
 
     @Override
     void sum() {
-
+        double newTransactionsTotal=sumNewTrasactions();
+        super.setCurrentBalance(super.getCurrentBalance()-newTransactionsTotal);
+        availableBalance -=newTransactionsTotal;
     }
 
     public double getAvailableBalance() {

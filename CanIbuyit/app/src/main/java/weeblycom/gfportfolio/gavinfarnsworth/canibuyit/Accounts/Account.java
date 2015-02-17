@@ -92,6 +92,18 @@ public abstract class Account {
         this.newTransactions.add(transaction);
 
     }
+    public double sumNewTrasactions(){
+        double newTransactionsTotal=0;
+        for(Transaction t : getNewTransactions()){
+            newTransactionsTotal+=t.getCost();
+            addTransaction(t);
+        }
+        clearNewTransactions();
+        return newTransactionsTotal;
+    }
+    public void clearNewTransactions(){
+        this.newTransactions.clear();
+    }
 
     public ArrayList<Transaction> getNewTransactions() {
         return newTransactions;

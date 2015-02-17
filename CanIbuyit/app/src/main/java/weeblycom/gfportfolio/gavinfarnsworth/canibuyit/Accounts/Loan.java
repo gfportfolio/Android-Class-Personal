@@ -54,7 +54,10 @@ public class Loan extends Account {
 
     @Override
     public void sum(){
+        double newTransactionsTotal=sumNewTrasactions();
+        setCurrentBalance(super.getCurrentBalance()-newTransactionsTotal);
 
     }
+
 
 }

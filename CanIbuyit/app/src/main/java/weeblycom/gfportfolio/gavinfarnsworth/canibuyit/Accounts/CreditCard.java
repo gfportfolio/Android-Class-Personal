@@ -2,6 +2,8 @@ package weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts;
 
 import java.util.Date;
 
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Transaction;
+
 /**
  * Created by gavinfarnsworth on 1/27/15.
  */
@@ -74,6 +76,8 @@ public class CreditCard extends Account {
 
     @Override
     void sum() {
-
+        double newTransactionsTotal=sumNewTrasactions();
+        super.setCurrentBalance(super.getCurrentBalance()+newTransactionsTotal);
+        owedBalance = limit-super.getCurrentBalance();
     }
 }

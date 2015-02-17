@@ -18,6 +18,7 @@ public class AccountManager {
         currentAccounts = new ArrayList<Account>();
         accountTypes = new ArrayList<String>();
     }
+//hello
 
     public AccountManager(ArrayList<Account> currentAccounts, ArrayList<String> accountTypes) {
         this.currentAccounts = currentAccounts;

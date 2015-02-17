@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="available">Available</string>
+    <string name="owed">Owed</string>
+    <string name="current">Current</string>
 </resources>
