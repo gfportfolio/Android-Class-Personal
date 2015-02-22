@@ -4,26 +4,33 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:background="@color/color200">
+    android:background="@color/color200"
+    android:translationZ="1dp">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true">
+        android:layout_width="263dp"
+        android:layout_height="460dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="82dp">
+            android:layout_height="40dp"
+            android:layout_weight="0.43">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/available"
-                android:id="@+id/textView"
+                android:id="@+id/available_main"
                 android:focusableInTouchMode="false"
                 android:layout_weight="1" />
 
@@ -32,23 +39,69 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/current"
-                android:id="@+id/textView2"
+                android:id="@+id/currentlbl_main"
                 android:layout_weight="1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/owed"
-                android:id="@+id/textView3"
-                android:layout_weight="1" />
+            <ImageButton
+                android:layout_width="@dimen/round_button_size"
+                android:layout_height="@dimen/round_button_size"
+                android:id="@+id/addTransactionButton_mainty"
+                android:src="@drawable/money"
+                android:background="@drawable/round_button"
+                android:translationZ="20dp"
+                android:layout_gravity="right|top"
+                android:padding="10dp"
+                android:onClick="addTransactionClick"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:elevation="0dp" />
+
+            <Space
+                android:layout_width="30px"
+                android:layout_height="20px" />
+
         </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accounts"
+            android:id="@+id/accountsButton_main"
+            android:clickable="true"
+            android:background="@color/color900"
+            android:textColor="@color/color100"
+            android:translationZ="1dp" />
 
         <ListView
             android:layout_width="wrap_content"
+            android:layout_height="149dp"
+            android:id="@+id/accountListView_main"
+            android:elevation="5dp"
+            android:background="@color/color100"
+            android:translationZ="1dp"
+            android:stackFromBottom="false" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="20px" />
+
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/listView"
-            android:elevation="10dp"
-            android:background="@color/color100" />
+            android:text="@string/transactions"
+            android:id="@+id/transactionsButton_main"
+            android:clickable="true"
+            android:background="@color/color900"
+            android:textColor="@color/color100" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="149dp"
+            android:id="@+id/transactionListView_main"
+            android:elevation="5dp"
+            android:background="@color/color100"
+            android:headerDividersEnabled="false" />
+
     </LinearLayout>
+
 </RelativeLayout>

@@ -6,4 +6,21 @@
     <string name="available">Available</string>
     <string name="owed">Owed</string>
     <string name="current">Current</string>
+    <string name="transactions">Transactions</string>
+    <string name="accounts">Accounts</string>
+    <string name="title_activity_add_transaction">AddTransaction</string>
+    <string name="title_activity_add_account">AddAccount</string>
+    <string name="account">Account</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="edit_transaction">Edit Transaction</string>
+    <string name="edit_account">Edit Transaction</string>
+    <string name="add_account">Add Account</string>
+    <string name="name">Location:</string>
+    <string name="date">Date:</string>
+    <string name="dueDate">Due Date:</string>
+    <string name="cost">Amount:</string>
+    <string name="place">Place</string>
+    <string name="sampleCost">100.00</string>
+    <string name="pickADate">Pick A Date</string>
+    <string name="title_activity_listactivity">listactivity</string>
 </resources>
