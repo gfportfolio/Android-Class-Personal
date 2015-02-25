@@ -18,7 +18,7 @@
     <string name="name">Location:</string>
     <string name="date">Date:</string>
     <string name="dueDate">Due Date:</string>
-    <string name="cost">Amount:</string>
+    <string name="cost">Amount: $</string>
     <string name="place">Place</string>
     <string name="sampleCost">100.00</string>
     <string name="pickADate">Pick A Date</string>

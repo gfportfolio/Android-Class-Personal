@@ -7,10 +7,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import junit.framework.Test;
 
 
 public class MainActivity extends ActionBarActivity {
+    private TextView availableTextView;
+    private TextView currentTextView;
+    private ImageButton addTransactionButton;
+    private Button transactionsButton;
+    private Button accountsButton;
+    private ListView accountsListView;
+    private ListView transactionsListView;
+
 
 
     @Override
@@ -18,7 +31,13 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+    availableTextView = (TextView) findViewById(R.id.availablelbl_main);
+    currentTextView = (TextView) findViewById(R.id.currentlbl_main);
+    addTransactionButton = (ImageButton) findViewById(R.id.addTransactionButton_main);
+    transactionsButton = (Button) findViewById(R.id.transactionsButton_main);
+    accountsButton = (Button) findViewById(R.id.accountsButton_main);
+    accountsListView = (ListView) findViewById(R.id.accountListView_main);
+    transactionsListView = (ListView) findViewById(R.id.transactionListView_main);
 
     }
 

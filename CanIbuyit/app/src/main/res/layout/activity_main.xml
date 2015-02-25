@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/available"
-                android:id="@+id/available_main"
+                android:id="@+id/availablelbl_main"
                 android:focusableInTouchMode="false"
                 android:layout_weight="1" />
 
@@ -45,7 +45,7 @@
             <ImageButton
                 android:layout_width="@dimen/round_button_size"
                 android:layout_height="@dimen/round_button_size"
-                android:id="@+id/addTransactionButton_mainty"
+                android:id="@+id/addTransactionButton_main"
                 android:src="@drawable/money"
                 android:background="@drawable/round_button"
                 android:translationZ="20dp"

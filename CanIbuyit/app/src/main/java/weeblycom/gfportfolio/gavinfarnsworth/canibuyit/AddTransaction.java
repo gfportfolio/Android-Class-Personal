@@ -4,9 +4,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 
 public class AddTransaction extends ActionBarActivity {
+    private EditText locationEditText;
+    private EditText amountEditText;
+    private Edit
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
