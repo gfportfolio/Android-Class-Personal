@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import junit.framework.Test;
 
@@ -25,24 +28,48 @@ public class MainActivity extends ActionBarActivity {
     private ListView transactionsListView;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    availableTextView = (TextView) findViewById(R.id.availablelbl_main);
-    currentTextView = (TextView) findViewById(R.id.currentlbl_main);
-    addTransactionButton = (ImageButton) findViewById(R.id.addTransactionButton_main);
-    transactionsButton = (Button) findViewById(R.id.transactionsButton_main);
-    accountsButton = (Button) findViewById(R.id.accountsButton_main);
-    accountsListView = (ListView) findViewById(R.id.accountListView_main);
-    transactionsListView = (ListView) findViewById(R.id.transactionListView_main);
+        availableTextView = (TextView) findViewById(R.id.availablelbl_main);
+        currentTextView = (TextView) findViewById(R.id.currentlbl_main);
+        addTransactionButton = (ImageButton) findViewById(R.id.addTransactionButton_main);
+        transactionsButton = (Button) findViewById(R.id.transactionsButton_main);
+        accountsButton = (Button) findViewById(R.id.accountsButton_main);
+        accountsListView = (ListView) findViewById(R.id.accountListView_main);
+        transactionsListView = (ListView) findViewById(R.id.transactionListView_main);
 
+        Model.initiate();
+
+        accountsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(getApplicationContext(),
+                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
+        transactionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(getApplicationContext(),
+                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
+
+        AccountListAdapter adapter = new AccountListAdapter(this, Model.accountManager.getCurrentAccounts());
+        accountsListView.setAdapter(adapter);
     }
 
-    public void addTransactionClick(View v){
-        Intent intent = new Intent(this,AddTransaction.class);
+    public void addTransactionClick(View v) {
+        Intent intent = new Intent(this, AddTransaction.class);
         startActivity(intent);
     }
 

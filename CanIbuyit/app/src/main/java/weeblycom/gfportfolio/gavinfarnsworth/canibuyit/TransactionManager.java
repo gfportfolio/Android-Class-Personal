@@ -44,5 +44,9 @@ public class TransactionManager {
         return true;
     }
 
+    public boolean addTransaction(Transaction t){
+        transactionHistory.add(t);
+        return true;
+    }
 
 }

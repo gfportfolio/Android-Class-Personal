@@ -5,6 +5,7 @@ import java.util.Date;
 
 import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts.Account;
 import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts.AccountFactory;
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Transaction;
 
 /**
  * Created by gavinfarnsworth on 2/1/15.
@@ -61,6 +62,18 @@ public class AccountManager {
     }
     public boolean removeAccountType(String type){
         accountTypes.remove(type);
+        return true;
+    }
+    public boolean addAccount(Account account){
+        currentAccounts.add(account);
+        return true;
+    }
+    public int totalAccounts(){
+        return currentAccounts.size();
+    }
+
+    public boolean addTransactionToAccount(int i, Transaction t){
+        currentAccounts.get(i).addTransaction(t);
         return true;
     }
 

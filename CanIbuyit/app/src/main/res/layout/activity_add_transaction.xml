@@ -104,7 +104,8 @@
                 android:background="@null"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:textColor="@color/color900" />
+                android:textColor="@color/color900"
+                android:onClick="datePickerClick" />
 
 
         </LinearLayout>
@@ -133,7 +134,8 @@
                 android:translationZ="0dp"
                 style="?android:attr/borderlessButtonStyle"
                 android:elevation="0dp"
-                android:textColor="@color/color900" />
+                android:textColor="@color/color900"
+                android:onClick="datePickerClick" />
 
 
         </LinearLayout>
