@@ -17,6 +17,12 @@ import android.widget.Toast;
 
 import junit.framework.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts.Account;
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Transaction;
+
 
 public class MainActivity extends ActionBarActivity {
     private TextView availableTextView;
@@ -62,14 +68,30 @@ public class MainActivity extends ActionBarActivity {
                         .show();
             }
         });
+        ArrayList<String> accounts = new ArrayList<String>() ;
+        ArrayList<String> transactions = new ArrayList<String>() ;
+        for(Account a : Model.accountManager.getCurrentAccounts()){
+            accounts.add(a.getName()+"\t\t\t$"+a.getCurrentBalance());
+        }
+        for(Transaction t: Model.transactionManager.getTransactionHistory()){
+            transactions.add(t.getName()+"\t\t\t$"+t.getCost());
+        }
 
-
-        AccountListAdapter adapter = new AccountListAdapter(this, Model.accountManager.getCurrentAccounts());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
+                , accounts);
         accountsListView.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
+                , transactions);
+        transactionsListView.setAdapter(adapter2);
     }
 
     public void addTransactionClick(View v) {
         Intent intent = new Intent(this, AddTransaction.class);
+        startActivity(intent);
+    }
+    public void clickAccountButton(View v){
+        Intent intent = new Intent(this, listactivity.class);
         startActivity(intent);
     }
 
