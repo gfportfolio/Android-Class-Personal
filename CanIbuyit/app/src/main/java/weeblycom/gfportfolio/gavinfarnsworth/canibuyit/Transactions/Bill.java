@@ -35,4 +35,19 @@ public class Bill extends Transaction {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
+
+    @Override
+    public void setUpActivity() {
+
+    }
+
+    @Override
+    public void addTransaction() {
+
+    }
+
+    @Override
+    public void setUpCurrentTransactionActivity() {
+
+    }
 }

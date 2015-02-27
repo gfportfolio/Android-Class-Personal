@@ -48,11 +48,14 @@ public class MainActivity extends ActionBarActivity {
         transactionsListView = (ListView) findViewById(R.id.transactionListView_main);
 
         Model.initiate();
-
+        final Intent addTransactionIntent = new Intent(this, AddTransaction.class);
+        final Intent addAccountIntent = new Intent(this, AddAccount.class);
         accountsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                Model.Editing=position;
+                startActivity(addAccountIntent);
                 Toast.makeText(getApplicationContext(),
                         "Click ListItem Number " + position, Toast.LENGTH_LONG)
                         .show();
@@ -63,7 +66,10 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                Model.Editing=position;
+                startActivity(addTransactionIntent);
                 Toast.makeText(getApplicationContext(),
+
                         "Click ListItem Number " + position, Toast.LENGTH_LONG)
                         .show();
             }
@@ -87,10 +93,18 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void addTransactionClick(View v) {
+        Model.Editing=-1;
         Intent intent = new Intent(this, AddTransaction.class);
         startActivity(intent);
     }
     public void clickAccountButton(View v){
+        Button current = (Button)v;
+        if(current.getText().equals(getString(R.string.accounts))){
+            Model.listType="Accounts";
+        }
+        else{
+            Model.listType="Transactions";
+        }
         Intent intent = new Intent(this, listactivity.class);
         startActivity(intent);
     }

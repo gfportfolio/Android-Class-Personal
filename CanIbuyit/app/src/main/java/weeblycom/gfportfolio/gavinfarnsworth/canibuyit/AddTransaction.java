@@ -8,31 +8,46 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Transaction;
+
 
 public class AddTransaction extends ActionBarActivity {
-    private EditText locationEditText;
-    private EditText amountEditText;
-    private Spinner accountSpinner;
-    private Button paidDateButton;
-    private Button dueDateButton;
-    private ImageButton deleteButton;
-    private ImageButton saveButton;
-
+    public static EditText locationEditText;
+    public static EditText amountEditText;
+    public static Spinner accountSpinner;
+    public static Button paidDateButton;
+    public static Button dueDateButton;
+    public static ImageButton deleteButton;
+    public static ImageButton saveButton;
+    public static Spinner typeSpinner;
     public static Button lastPickDateButton;
-
+    public static LinearLayout dueDateLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
+        setupIds();
+
+        if(Model.Editing>=0){
+            setupActivity();
+        }
+
+    }
+
+    public void setupIds(){
         locationEditText =(EditText) findViewById(R.id.location_add_trans);
         amountEditText =(EditText) findViewById(R.id.amount_add_trans);
         accountSpinner = (Spinner) findViewById(R.id.accountSpinner_add_tran);
@@ -40,6 +55,50 @@ public class AddTransaction extends ActionBarActivity {
         dueDateButton = (Button) findViewById(R.id.dueDatePick_add_trans);
         deleteButton = (ImageButton) findViewById(R.id.deleteButton_add_trans);
         saveButton = (ImageButton) findViewById(R.id.saveButton_add_trans);
+        typeSpinner = (Spinner) findViewById(R.id.typeSpinner_add_transaction);
+        dueDateLayout = (LinearLayout) findViewById(R.id.dueDateLayout_add_transaction);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
+                , Model.accountManager.getAccountNames());
+        accountSpinner.setAdapter(adapter);
+
+        accountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(),
+                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
+                        .show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
+                , Model.transactionManager.getTypes());
+        typeSpinner.setAdapter(adapter2);
+
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(),
+                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
+                        .show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    public void setupActivity(){
+        Transaction selectedTransaction = Model.transactionManager.getTransaction(Model.Editing);
+        selectedTransaction.setUpCurrentTransactionActivity();
     }
 
     public void datePickerClick(View v){
@@ -73,7 +132,7 @@ public class AddTransaction extends ActionBarActivity {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            AddTransaction.lastPickDateButton.setText(month+"/"+day+"/"+year);
+            AddTransaction.lastPickDateButton.setText((month+1)+"/"+day+"/"+year);
         }
     }
 

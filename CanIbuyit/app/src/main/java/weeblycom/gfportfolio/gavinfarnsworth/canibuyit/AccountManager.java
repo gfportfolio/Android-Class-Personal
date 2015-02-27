@@ -77,4 +77,11 @@ public class AccountManager {
         return true;
     }
 
+    public ArrayList<String> getAccountNames(){
+       ArrayList<String> names = new ArrayList<String>();
+        for(Account a : Model.accountManager.getCurrentAccounts()){
+            names.add(a.getName());
+        }
+        return names;
+    }
 }

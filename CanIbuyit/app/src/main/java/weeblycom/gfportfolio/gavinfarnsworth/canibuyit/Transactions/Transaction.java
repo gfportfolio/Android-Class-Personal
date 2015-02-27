@@ -104,4 +104,10 @@ public abstract class Transaction {
     public void setAccountID(int accountID) {
         this.accountID = accountID;
     }
+
+    public abstract void setUpActivity();
+
+    public abstract void addTransaction();
+
+    public abstract void setUpCurrentTransactionActivity();
 }

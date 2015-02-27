@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Can I buy it?</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="available">Available</string>
@@ -8,8 +7,9 @@
     <string name="current">Current</string>
     <string name="transactions">Transactions</string>
     <string name="accounts">Accounts</string>
-    <string name="title_activity_add_transaction">AddTransaction</string>
-    <string name="title_activity_add_account">AddAccount</string>
+    <string name="title_activity_add_transaction">Add Transaction</string>
+    <string name="title_activity_add_account">Add Account</string>
+    <string name="title_activity_listactivity">Detailed List</string>
     <string name="account">Account</string>
     <string name="add_transaction">Add Transaction</string>
     <string name="edit_transaction">Edit Transaction</string>
@@ -22,5 +22,13 @@
     <string name="place">Place</string>
     <string name="sampleCost">100.00</string>
     <string name="pickADate">Pick A Date</string>
-    <string name="title_activity_listactivity">listactivity</string>
+    <string name="accountName">Name:</string>
+    <string name="bank">Bank</string>
+    <string name="type">Type:</string>
+    <string name="interest">Interest:</string>
+    <string name="limit">Limit:</string>
+    <string name="payment">Payment:</string>
+    <string name="list">List</string>
+
+
 </resources>
