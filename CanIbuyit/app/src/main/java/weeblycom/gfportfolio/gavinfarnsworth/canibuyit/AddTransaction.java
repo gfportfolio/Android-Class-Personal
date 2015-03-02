@@ -3,6 +3,7 @@ package weeblycom.gfportfolio.gavinfarnsworth.canibuyit;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.graphics.AvoidXfermode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +21,9 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Bill;
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Deposit;
+import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Expense;
 import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Transaction;
 
 
@@ -34,6 +38,9 @@ public class AddTransaction extends ActionBarActivity {
     public static Spinner typeSpinner;
     public static Button lastPickDateButton;
     public static LinearLayout dueDateLayout;
+    public static int accountLocationId;
+    private Transaction newTransaction;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +72,12 @@ public class AddTransaction extends ActionBarActivity {
         accountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),
-                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
-                        .show();
+                accountLocationId=position;
+
+
+                //Toast.makeText(getApplicationContext(),
+                //        "Click ListItem Number " + position, Toast.LENGTH_LONG)
+                //        .show();
             }
 
             @Override
@@ -83,9 +93,15 @@ public class AddTransaction extends ActionBarActivity {
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),
-                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
-                        .show();
+                String type = Model.transactionManager.getTypeFromIndex(position);
+                switch(type){
+                    case "Bill":newTransaction = new Bill();
+                        break;
+                    case "Deposit": newTransaction = new Deposit();
+                        break;
+                    case "Expense": newTransaction = new Expense();
+                }
+
             }
 
             @Override
@@ -108,11 +124,34 @@ public class AddTransaction extends ActionBarActivity {
     }
 
     public void deleteClick(View v){
-
+        if(Model.Editing>-1){
+            Model.transactionManager.removeTransaction(Model.Editing);
+            Model.accountManager.removeTransaction(accountLocationId, Model.Editing);
+        }
+        finish();
     }
 
     public void saveClick(View v){
+        if(!dueDateButton.getText().equals(getString(R.string.pickADate))) {
 
+
+            newTransaction.addTransaction();
+
+            if (Model.Editing > -1) {
+                Model.transactionManager.replaceTransaction(newTransaction, Model.Editing);
+                Model.accountManager.replaceTransaction(accountLocationId, Model.Editing, newTransaction);
+            } else {
+                Model.transactionManager.addTransaction(newTransaction);
+                Model.accountManager.addTransactionToAccount(accountLocationId, newTransaction);
+            }
+            Model.Editing=-1;
+            finish();
+        }
+        else{
+            Toast.makeText(getApplicationContext(),
+                    "Please Choose a Date", Toast.LENGTH_LONG)
+                    .show();
+        }
     }
 
 

@@ -59,5 +59,15 @@ public class Loan extends Account {
 
     }
 
+    @Override
+    public void addAccount() {
+
+    }
+
+    @Override
+    public void setUpCurrentAccountActivity() {
+
+    }
+
 
 }

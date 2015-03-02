@@ -14,6 +14,15 @@ public abstract class Transaction {
     private String category;
     private boolean deposit;
     private int accountID;
+    private int transactionID;
+
+    public int getTransactionID() {
+        return transactionID;
+    }
+
+    public void setTransactionID(int transactionID) {
+        this.transactionID = transactionID;
+    }
 
     public Transaction(String name, Double cost, Date date, String category, boolean deposit, int accountID) {
         this.name = name;

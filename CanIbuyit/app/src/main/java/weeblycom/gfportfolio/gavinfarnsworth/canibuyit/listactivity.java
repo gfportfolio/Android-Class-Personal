@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -25,38 +26,32 @@ public class listactivity extends ActionBarActivity {
     public ListView listView;
     public TextView title;
     public ImageButton addButton;
+    private Intent currentIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        generalSetup();
+
+    }
+
+    public void generalSetup(){
         setContentView(R.layout.activity_listactivity);
         listView = (ListView) findViewById(R.id.list_listactivity);
         title = (TextView) findViewById(R.id.title_list);
         addButton = (ImageButton) findViewById(R.id.addTransactionButton_list);
+        final Intent addTransactionIntent =new Intent(this, AddTransaction.class);
+        currentIntent = addTransactionIntent;
+        final Intent addAccountIntent =new Intent(this, AddAccount.class);
 
-        final Intent addTransactionIntent = new Intent(this, AddTransaction.class);
-        final Intent addAccountIntent = new Intent(this, AddAccount.class);
-        Intent currentIntent = addTransactionIntent;
-        ArrayList<String> accounts = new ArrayList<String>() ;
-        ArrayList<String> transactions = new ArrayList<String>() ;
-        for(Account a : Model.accountManager.getCurrentAccounts()){
-            accounts.add(a.getName()+"\t\t\t$"+a.getCurrentBalance());
-        }
-        for(Transaction t: Model.transactionManager.getTransactionHistory()){
-            transactions.add(t.getName()+"\t\t\t$"+t.getCost());
-        }
+
         if(Model.listType.equals("Accounts")){
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
-                    , accounts);
-            listView.setAdapter(adapter);
-            title.setText(getString(R.string.account)+" "+getString(R.string.list));
-            currentIntent=addAccountIntent;
+            setUpAccountPage(addAccountIntent);
+
         }
         else if(Model.listType.equals("Transactions")){
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
-               , transactions);
-            listView.setAdapter(adapter2);
-            title.setText(getString(R.string.transactions)+" "+getString(R.string.list));
+            setUpTransactionPage();
+
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,16 +60,47 @@ public class listactivity extends ActionBarActivity {
                                     int position, long id) {
                 Model.Editing = position;
                 if(Model.listType.equals("Accounts")) {
-                startActivity(addAccountIntent);
+                    startActivity(addAccountIntent);
                 }
                 else if(Model.listType.equals("Transactions")){
-                startActivity(addTransactionIntent);
+                   startActivity(addTransactionIntent);
                 }
                 Toast.makeText(getApplicationContext(),
                         "Click  Number " + position, Toast.LENGTH_LONG)
                         .show();
             }
         });
+
+
+    }
+    public void setUpAccountPage(Intent addAccountIntent){
+        ArrayList<String> accounts = new ArrayList<String>() ;
+
+        for(Account a : Model.accountManager.getCurrentAccounts()){
+            accounts.add(a.getName()+"\t\t\t$"+a.getCurrentBalance());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
+                , accounts);
+        listView.setAdapter(adapter);
+        title.setText(getString(R.string.account)+" "+getString(R.string.list));
+        currentIntent=addAccountIntent;
+    }
+    public void setUpTransactionPage(){
+        ArrayList<String> transactions = new ArrayList<String>() ;
+        if(Model.accountTransactionsToView>=0){
+            for(Transaction t: Model.accountManager.getCurrentAccounts().get(Model.accountTransactionsToView).getTransactions()){
+                transactions.add(t.getName() + "\t\t\t$" + t.getCost());
+            }
+        }
+        else{
+        for(Transaction t: Model.transactionManager.getTransactionHistory()) {
+            transactions.add(t.getName() + "\t\t\t$" + t.getCost());
+        }
+        }
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
+                , transactions);
+        listView.setAdapter(adapter2);
+        title.setText(getString(R.string.transactions)+" "+getString(R.string.list));
     }
 
     public void listAddClick(View v){

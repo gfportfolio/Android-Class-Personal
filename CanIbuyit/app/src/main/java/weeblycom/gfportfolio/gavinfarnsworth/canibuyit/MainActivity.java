@@ -32,6 +32,7 @@ public class MainActivity extends ActionBarActivity {
     private Button accountsButton;
     private ListView accountsListView;
     private ListView transactionsListView;
+    private static boolean hasInitiated = false;
 
 
     @Override
@@ -47,7 +48,18 @@ public class MainActivity extends ActionBarActivity {
         accountsListView = (ListView) findViewById(R.id.accountListView_main);
         transactionsListView = (ListView) findViewById(R.id.transactionListView_main);
 
-        Model.initiate();
+        if(!hasInitiated) {
+            Model.initiate();
+        }
+        setupView();
+    }
+
+    private void setupView(){
+        double totalMoney = Model.accountManager.sumAllAccounts();
+        availableTextView.setText(getString(R.string.available)+": $"+ totalMoney);
+
+
+
         final Intent addTransactionIntent = new Intent(this, AddTransaction.class);
         final Intent addAccountIntent = new Intent(this, AddAccount.class);
         accountsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -55,10 +67,6 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Model.Editing=position;
-                startActivity(addAccountIntent);
-                Toast.makeText(getApplicationContext(),
-                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
-                        .show();
             }
         });
 
@@ -67,11 +75,6 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Model.Editing=position;
-                startActivity(addTransactionIntent);
-                Toast.makeText(getApplicationContext(),
-
-                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
-                        .show();
             }
         });
         ArrayList<String> accounts = new ArrayList<String>() ;
@@ -92,6 +95,11 @@ public class MainActivity extends ActionBarActivity {
         transactionsListView.setAdapter(adapter2);
     }
 
+    public void onResume(){
+        super.onResume();
+        setupView();
+
+    }
     public void addTransactionClick(View v) {
         Model.Editing=-1;
         Intent intent = new Intent(this, AddTransaction.class);

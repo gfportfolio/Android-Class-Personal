@@ -75,9 +75,19 @@ public class CreditCard extends Account {
     }
 
     @Override
-    void sum() {
+    public void sum() {
         double newTransactionsTotal=sumNewTrasactions();
         super.setCurrentBalance(super.getCurrentBalance()+newTransactionsTotal);
         owedBalance = limit-super.getCurrentBalance();
+    }
+
+    @Override
+    public void addAccount() {
+
+    }
+
+    @Override
+    public void setUpCurrentAccountActivity() {
+
     }
 }

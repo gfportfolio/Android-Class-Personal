@@ -15,10 +15,12 @@ public class Model {
     public static TransactionManager transactionManager;
     public static String listType;
     public static int Editing;
+    public static int accountTransactionsToView;
 
     public static void initiate() {
         accountManager = new AccountManager();
         transactionManager = new TransactionManager();
+        accountTransactionsToView=-1;
 
         accountManager.addAccount(new SavingsAccount("Savings", "Mountain America", 100.00, 95.00, 1.0, accountManager.totalAccounts()));
         accountManager.addAccount(new CheckingAccount("Checking", "Mountain America", 200.00, true, 200.00, accountManager.totalAccounts()));
@@ -33,8 +35,8 @@ public class Model {
 
         accountManager.addAccountType("Savings");
         accountManager.addAccountType("Checking");
-        accountManager.addAccountType("Credit Card");
-        accountManager.addAccountType("Loan");
-        accountManager.addAccountType("Other");
+       // accountManager.addAccountType("Credit Card");
+       // accountManager.addAccountType("Loan");
+       // accountManager.addAccountType("Other");
     }
 }

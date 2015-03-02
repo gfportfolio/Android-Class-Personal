@@ -14,8 +14,8 @@ public class TransactionManager {
     public TransactionManager() {
         transactionHistory = new ArrayList<Transaction>();
         types = new ArrayList<String>();
-        types.add("Bill");
-        types.add("Deposit");
+       // types.add("Bill");
+       //types.add("Deposit");
         types.add("Expense");
     }
 
@@ -57,6 +57,15 @@ public class TransactionManager {
 
     }
 
+    public String getTypeFromIndex(int i ){
+        return types.get(i);
+    }
+
+    public void replaceTransaction(Transaction t, int i){
+        transactionHistory.remove(i);
+        transactionHistory.add(i, t);
+    }
+
     public int getTypeIndex(String type){
         for(int i =0 ; i < types.size(); i++){
             if(types.get(i).equals(type)){
@@ -65,5 +74,9 @@ public class TransactionManager {
             }
         }
         return 0;
+    }
+
+    public void removeTransaction(int location){
+        transactionHistory.remove(location);
     }
 }

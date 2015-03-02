@@ -14,10 +14,23 @@ public class SavingsAccount extends Account {
 
     }
 
+    public SavingsAccount() {
+    }
+
     @Override
-    void sum() {
+    public void sum() {
         double newTransactionsTotal=sumNewTrasactions();
         super.setCurrentBalance(super.getCurrentBalance()-newTransactionsTotal);
+    }
+
+    @Override
+    public void addAccount() {
+
+    }
+
+    @Override
+    public void setUpCurrentAccountActivity() {
+
     }
 
     public double getAvailableBalance() {

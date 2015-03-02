@@ -40,7 +40,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/current"
                 android:id="@+id/currentlbl_main"
-                android:layout_weight="1" />
+                android:layout_weight="0"
+                android:visibility="invisible" />
 
             <ImageButton
                 android:layout_width="@dimen/round_button_size"

@@ -9,6 +9,10 @@ public class Bill extends Transaction {
 
     public Date dueDate;
 
+    public Bill() {
+    }
+
+
     public Bill(String Name, Double Cost, Date Date, Date DueDate) {
         super(Name, Cost, Date);
         dueDate = DueDate;

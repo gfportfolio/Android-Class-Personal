@@ -16,13 +16,16 @@ public abstract class Account {
     private ArrayList<Transaction> transactions;
     private ArrayList<Transaction> newTransactions;
     private int id;
+    public double startAmount;
 
-
+    protected Account() {
+    }
 
     public Account(String name, String bank, String type, double currentBalance, boolean positive, int id) {
         this.name = name;
         this.bank = bank;
         this.type = type;
+        this.startAmount = currentBalance;
         this.currentBalance = currentBalance;
         this.positive = positive;
         this.transactions = new ArrayList<Transaction>();
@@ -83,7 +86,7 @@ public abstract class Account {
         this.id = id;
     }
 
-    abstract void sum();
+    public abstract void sum();
     public void addTransaction(Transaction transaction){
         this.transactions.add(transaction);
 
@@ -94,9 +97,15 @@ public abstract class Account {
     }
     public double sumNewTrasactions(){
         double newTransactionsTotal=0;
-        for(Transaction t : getNewTransactions()){
-            newTransactionsTotal+=t.getCost();
-            addTransaction(t);
+        for(Transaction t : getTransactions()) {
+            if (t.isDeposit()) {
+                newTransactionsTotal += t.getCost();
+            }
+            else {
+                newTransactionsTotal-=t.getCost();
+            }
+            //addTransaction(t);
+
         }
         clearNewTransactions();
         return newTransactionsTotal;
@@ -108,4 +117,34 @@ public abstract class Account {
     public ArrayList<Transaction> getNewTransactions() {
         return newTransactions;
     }
+
+    public void replaeTransaction(int transactionID, Transaction t){
+           int location = getListIdFormTransactionId(t.getTransactionID());
+        if(location>=0){
+            transactions.add(t);
+        }
+        else{
+            transactions.remove(location);
+            transactions.add(location, t);
+        }
+    }
+
+    public int getListIdFormTransactionId(int transID){
+        for(int i =0; i<transactions.size(); i++){
+            if(transactions.get(i).getTransactionID()==transID){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public void removeTransactionFromTransactionId(int transid){
+        int transLocation = getListIdFormTransactionId(transid);
+        transactions.remove(transLocation);
+    }
+
+
+    public abstract void addAccount();
+
+    public abstract void setUpCurrentAccountActivity();
 }

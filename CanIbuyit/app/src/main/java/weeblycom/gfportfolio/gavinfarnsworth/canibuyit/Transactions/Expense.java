@@ -20,14 +20,17 @@ import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Model;
 public class Expense extends Transaction {
     public Expense(boolean deposit, String name, Double cost, Date date) {
         super(deposit, name, cost, date, "Expense");
+        super.setDeposit(false);
     }
 
     public Expense(String Name, Double Cost, Date Date) {
         super(Name, Cost, Date, "Expense");
+        super.setDeposit(false);
     }
 
     public Expense(String Name, Double Cost, Date Date, String Category) {
         super(Name, Cost, Date, Category);
+        super.setDeposit(false);
     }
 
     public Expense() {
@@ -42,7 +45,20 @@ public class Expense extends Transaction {
 
     @Override
     public void addTransaction() {
+try {
+    super.setName(AddTransaction.locationEditText.getText().toString());
+    super.setCost(Double.parseDouble(AddTransaction.amountEditText.getText().toString()));
+    super.setAccountID(AddTransaction.accountLocationId);
+    String [] date = AddTransaction.paidDateButton.getText().toString().split("/");
+    int day = Integer.parseInt(date[0]);
+    int month = Integer.parseInt(date[1]);
+    int year = Integer.parseInt(date[2]);
+    super.setDate(new Date(year, month-1, day));
 
+}
+catch(Exception e){
+    throw e;
+}
     }
 
     @Override

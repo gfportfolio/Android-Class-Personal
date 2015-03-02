@@ -14,13 +14,23 @@ public class CheckingAccount extends Account {
         this.availableBalance = availableBalance;
     }
 
-
+    public CheckingAccount() {
+    }
 
     @Override
-    void sum() {
+    public void sum() {
         double newTransactionsTotal=sumNewTrasactions();
-        super.setCurrentBalance(super.getCurrentBalance()-newTransactionsTotal);
-        availableBalance -=newTransactionsTotal;
+        super.setCurrentBalance(super.startAmount + newTransactionsTotal);
+    }
+
+    @Override
+    public void addAccount() {
+
+    }
+
+    @Override
+    public void setUpCurrentAccountActivity() {
+
     }
 
     public double getAvailableBalance() {

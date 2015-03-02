@@ -84,4 +84,24 @@ public class AccountManager {
         }
         return names;
     }
+
+    public void replaceTransaction(int accountId, int transactionID, Transaction t){
+        currentAccounts.get(accountId).replaeTransaction(transactionID, t);
+        
+    }
+
+    public void removeTransaction(int accountID, int transactionID){
+        currentAccounts.get(accountID).removeTransactionFromTransactionId(transactionID);
+
+    }
+
+    public double sumAllAccounts(){
+        double currentValue = 0;
+        for(Account a : currentAccounts){
+            a.sum();
+            currentValue+=a.getCurrentBalance();
+        }
+        return currentValue;
+    }
+
 }
