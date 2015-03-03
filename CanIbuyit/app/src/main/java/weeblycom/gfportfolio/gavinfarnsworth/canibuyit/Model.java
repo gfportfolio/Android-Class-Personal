@@ -16,6 +16,7 @@ public class Model {
     public static String listType;
     public static int Editing;
     public static int accountTransactionsToView;
+    public static boolean hasInitiated = false;
 
     public static void initiate() {
         accountManager = new AccountManager();
@@ -38,5 +39,7 @@ public class Model {
        // accountManager.addAccountType("Credit Card");
        // accountManager.addAccountType("Loan");
        // accountManager.addAccountType("Other");
+
+        hasInitiated=true;
     }
 }

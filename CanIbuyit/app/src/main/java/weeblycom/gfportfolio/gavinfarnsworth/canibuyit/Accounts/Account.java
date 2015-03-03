@@ -19,6 +19,8 @@ public abstract class Account {
     public double startAmount;
 
     protected Account() {
+        startAmount=0;
+        transactions = new ArrayList<Transaction>();
     }
 
     public Account(String name, String bank, String type, double currentBalance, boolean positive, int id) {
@@ -35,6 +37,7 @@ public abstract class Account {
 
     public String getBank() {
         return bank;
+
 
     }
 
@@ -107,7 +110,7 @@ public abstract class Account {
             //addTransaction(t);
 
         }
-        clearNewTransactions();
+        //clearNewTransactions();
         return newTransactionsTotal;
     }
     public void clearNewTransactions(){
@@ -147,4 +150,12 @@ public abstract class Account {
     public abstract void addAccount();
 
     public abstract void setUpCurrentAccountActivity();
+
+    public abstract void addAccountWithTransactions(ArrayList<Transaction> transactions);
+
+    public void addTransactionsFromList(ArrayList<Transaction> transactions){
+        for(Transaction t: transactions){
+            transactions.add(t);
+        }
+    }
 }

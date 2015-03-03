@@ -34,6 +34,7 @@ public class Expense extends Transaction {
     }
 
     public Expense() {
+        super.setDeposit(false);
     }
 
     @Override

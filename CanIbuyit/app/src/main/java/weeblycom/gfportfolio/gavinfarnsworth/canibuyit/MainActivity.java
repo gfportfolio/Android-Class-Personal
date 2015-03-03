@@ -38,6 +38,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
         availableTextView = (TextView) findViewById(R.id.availablelbl_main);
@@ -48,15 +50,16 @@ public class MainActivity extends ActionBarActivity {
         accountsListView = (ListView) findViewById(R.id.accountListView_main);
         transactionsListView = (ListView) findViewById(R.id.transactionListView_main);
 
-        if(!hasInitiated) {
+        if(!Model.hasInitiated) {
             Model.initiate();
         }
         setupView();
     }
 
+
     private void setupView(){
-        double totalMoney = Model.accountManager.sumAllAccounts();
-        availableTextView.setText(getString(R.string.available)+": $"+ totalMoney);
+       double totalMoney = Model.accountManager.sumAllAccounts();
+       availableTextView.setText(getString(R.string.available)+": $"+ totalMoney);
 
 
 
@@ -67,6 +70,7 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Model.Editing=position;
+                startActivity(addAccountIntent);
             }
         });
 
@@ -75,6 +79,7 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Model.Editing=position;
+                startActivity(addTransactionIntent);
             }
         });
         ArrayList<String> accounts = new ArrayList<String>() ;
@@ -116,6 +121,8 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, listactivity.class);
         startActivity(intent);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

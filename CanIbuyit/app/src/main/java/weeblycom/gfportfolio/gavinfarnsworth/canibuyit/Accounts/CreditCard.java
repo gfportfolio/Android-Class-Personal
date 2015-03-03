@@ -1,5 +1,6 @@
 package weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Transactions.Transaction;
@@ -88,6 +89,11 @@ public class CreditCard extends Account {
 
     @Override
     public void setUpCurrentAccountActivity() {
+
+    }
+
+    @Override
+    public void addAccountWithTransactions(ArrayList<Transaction> transactions) {
 
     }
 }

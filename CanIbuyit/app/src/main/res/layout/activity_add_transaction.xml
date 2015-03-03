@@ -164,7 +164,7 @@
 
         <Space
             android:layout_width="10dp"
-            android:layout_height="109dp" />
+            android:layout_height="400px" />
 
         <LinearLayout
             android:orientation="horizontal"

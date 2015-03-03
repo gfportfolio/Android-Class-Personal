@@ -3,6 +3,7 @@ package weeblycom.gfportfolio.gavinfarnsworth.canibuyit;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,13 +14,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-
 import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts.Account;
 import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts.CheckingAccount;
 import weeblycom.gfportfolio.gavinfarnsworth.canibuyit.Accounts.SavingsAccount;
@@ -46,17 +48,22 @@ public class AddAccount extends ActionBarActivity {
     private LinearLayout    interestLayout;
     private LinearLayout    limitLayout;
     private LinearLayout    dueDateLayout;
-    private EditText        nameEditText;
-    private Spinner         typeSpinner;
-    private EditText        bankEditText;
-    private EditText        currentEditText;
+    private static EditText        nameEditText;
+    private static Spinner         typeSpinner;
+    private static EditText        bankEditText;
+    private static EditText        currentEditText;
     private EditText        availabeEditText;
     private EditText        interestEditText;
     private EditText        limitEditText;
     private Button          dueDateButton;
     private Button          viewTransactionButton;
-
+    private ImageButton     saveButton;
+    private ImageButton     deleteButton;
     private Account newAccount;
+    private Account selectedAccount;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,14 +72,19 @@ public class AddAccount extends ActionBarActivity {
         if(Model.Editing>=0){
             setupActivity();
         }
+        else{
+            viewTransactionButton.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void setupActivity(){
-        Account selectedAccount = Model.accountManager.getCurrentAccounts().get(Model.Editing);
+        selectedAccount = Model.accountManager.getCurrentAccounts().get(Model.Editing);
         selectedAccount.setUpCurrentAccountActivity();
     }
 
     private void setupInstanceVariables(){
+        saveButton = (ImageButton) findViewById(R.id.save_add_account);
+        deleteButton = (ImageButton) findViewById(R.id.deleteButton_add_account);
         nameTextView =(TextView) findViewById(R.id.namelbl_add_activity);
         typeTextView  =(TextView) findViewById(R.id.typelbl_add_account);
         bankTextView=(TextView) findViewById(R.id.banklbl_add_activity);
@@ -101,11 +113,11 @@ public class AddAccount extends ActionBarActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
                 , Model.accountManager.getAccountTypes());
         typeSpinner.setAdapter(adapter);
-
+        currentTextView.setText(getString(R.string.current)+": $");
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String type = Model.transactionManager.getTypeFromIndex(position);
+                String type = Model.accountManager.getTypeStringFromInt(position);
                 switch(type){
                     case "Savings":newAccount = new SavingsAccount();
                         break;
@@ -167,5 +179,75 @@ public class AddAccount extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void accountTransactionButton(View v){
+        final Intent addTransactionIntent = new Intent(this, listactivity.class);
+        if(selectedAccount!= null){
+            Model.listType = "Transactions";
+            Model.accountTransactionsToView = selectedAccount.getId();
+            startActivity(addTransactionIntent);
+
+        }
+    }
+
+    public void accountDeleteClick(View v){
+        if(Model.Editing>-1){
+            Model.accountManager.removeAccount(Model.Editing);
+            ArrayList<Transaction> transactionArrayList = Model.transactionManager.getTransactionHistory();
+
+            for(Transaction t: transactionArrayList){
+                if(t.getAccountID()==Model.Editing){
+                    Model.transactionManager.removeTransaction(t.getTransactionID());
+                }
+            }
+        }
+        finish();
+    }
+
+    public void accountSaveClick(View v){
+
+            if (Model.Editing >-1) {
+
+                newAccount.addAccountWithTransactions(selectedAccount.getTransactions());
+                Model.accountManager.replaceAccount(newAccount, Model.Editing);
+            } else {
+                newAccount.addAccount();
+                Model.accountManager.addAccount(newAccount);
+            }
+            Model.Editing=-1;
+            finish();
+    }
+
+    public static String getBankEditText() {
+        return bankEditText.getText().toString();
+    }
+
+    public static void setBankEditText(String bankEditText) {
+        AddAccount.bankEditText.setText( bankEditText);
+    }
+
+    public static String getNameEditText() {
+        return nameEditText.getText().toString();
+    }
+
+    public static void setNameEditText(String nameEditText) {
+        AddAccount.nameEditText.setText( nameEditText);
+    }
+
+    public static String getCurrentEditText() {
+        return currentEditText.getText().toString();
+    }
+
+    public static void setCurrentEditText(String currentEditText) {
+        AddAccount.currentEditText.setText(currentEditText);
+    }
+
+    public static int getCurrentTypePosition() {
+        return typeSpinner.getSelectedItemPosition();
+    }
+
+    public static void setCurrentTypePosition(int currentTypePosition) {
+        typeSpinner.setSelection(currentTypePosition);
     }
 }

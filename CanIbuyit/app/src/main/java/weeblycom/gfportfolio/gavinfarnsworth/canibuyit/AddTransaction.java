@@ -132,7 +132,7 @@ public class AddTransaction extends ActionBarActivity {
     }
 
     public void saveClick(View v){
-        if(!dueDateButton.getText().equals(getString(R.string.pickADate))) {
+        if(!paidDateButton.getText().equals(getString(R.string.pickADate))) {
 
 
             newTransaction.addTransaction();

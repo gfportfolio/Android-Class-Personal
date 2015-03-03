@@ -104,4 +104,23 @@ public class AccountManager {
         return currentValue;
     }
 
+    public void replaceAccount(Account a, int i){
+        currentAccounts.remove(i);
+        currentAccounts.add(i,a);
+
+    }
+
+    public String getTypeStringFromInt(int i){
+        return accountTypes.get(i);
+    }
+
+    public int getLocationInTypeList(String s){
+        for(int i =0; i < accountTypes.size(); i++){
+            if(accountTypes.get(i).equals(s)){
+                return i;
+            }
+        }
+        return 0;
+    }
+
 }

@@ -35,6 +35,18 @@ public class listactivity extends ActionBarActivity {
 
     }
 
+    public void onResume(){
+        super.onResume();
+        generalSetup();
+
+    }
+
+    public void onHomeClick(View v){
+        //finish();
+        final Intent main =new Intent(this, MainActivity.class);
+        startActivity(main);
+    }
+
     public void generalSetup(){
         setContentView(R.layout.activity_listactivity);
         listView = (ListView) findViewById(R.id.list_listactivity);
@@ -65,9 +77,7 @@ public class listactivity extends ActionBarActivity {
                 else if(Model.listType.equals("Transactions")){
                    startActivity(addTransactionIntent);
                 }
-                Toast.makeText(getApplicationContext(),
-                        "Click  Number " + position, Toast.LENGTH_LONG)
-                        .show();
+
             }
         });
 
@@ -88,6 +98,7 @@ public class listactivity extends ActionBarActivity {
     public void setUpTransactionPage(){
         ArrayList<String> transactions = new ArrayList<String>() ;
         if(Model.accountTransactionsToView>=0){
+            addButton.setVisibility(View.INVISIBLE);
             for(Transaction t: Model.accountManager.getCurrentAccounts().get(Model.accountTransactionsToView).getTransactions()){
                 transactions.add(t.getName() + "\t\t\t$" + t.getCost());
             }
